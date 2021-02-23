@@ -1,1 +1,8 @@
+0.0.2 (23/02/2021):
+-Added all other colour maps.
 
+0.0.1 (23/02/2021):
+-Package working with one colour map.
+
+0.0.0 (12/02/2021):
+-Set up GitHub repository.
