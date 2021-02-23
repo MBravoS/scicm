@@ -39,7 +39,7 @@ def get_version():
 						versions.append(line.split(': ')[1].replace('\n',''))
 						break
 					elif ('setup' in filename and line.strip().startswith("version =")):
-						versions.append(line.split(" = ")[1])
+						versions.append(line.split(" = ")[1].replace('\n',''))
 						break
 					#elif ('conf' in filename and line.startswith("release =")):
 					#	versions.append(line.split("'")[1])
