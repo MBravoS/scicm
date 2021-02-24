@@ -34,4 +34,5 @@ Available colour maps:
     - 'YkM'
 - Special:
     - 'quartile'
-*Current version*: 0.0.3
+
+Current version: 0.0.3
