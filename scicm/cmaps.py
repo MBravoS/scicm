@@ -8,7 +8,7 @@ from matplotlib.colors import LinearSegmentedColormap
 
 cmaps=['BkG','blue2cyan','blue','CkO','cyan','green2yellow','GwP','magenta','orange','purple2magenta',
        'quartile','red2orange','stone','yellow','BkR','blue2purple','BwR','cyan2green','GkP','green',
-       'magenta2red','orange2yellow','PkO','purple','quintile','red','tercile','YkM']
+       'magenta2red','orange2yellow','PkO','purple','red','YkM']
 
 cmap_dict={}
 data_path=os.path.join(os.path.split(__file__)[0],'cm_data')
