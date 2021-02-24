@@ -6,9 +6,11 @@ import numpy as np
 from matplotlib import cm
 from matplotlib.colors import LinearSegmentedColormap
 
-cmaps=['BkG','blue2cyan','blue','CkO','cyan','green2yellow','GwP','magenta','orange','purple2magenta',
-       'quartile','red2orange','stone','yellow','BkR','blue2purple','BwR','cyan2green','GkP','green',
-       'magenta2red','orange2yellow','PkO','purple','red','YkM']
+cmaps=['B2C','B2P','BkG','BkR','Blue','BwR','C2G',
+       'CkO','Cyan','G2Y','GkP','Green','GwP',
+       'M2R','Magenta','O2Y','Orange','P2M','PkO',
+       'Purple','Quartile','R2O','Red','Stone',
+       'Yellow','YkM']
 
 cmap_dict={}
 data_path=os.path.join(os.path.split(__file__)[0],'cm_data')

@@ -35,7 +35,7 @@ def get_version():
 				versions.append(file.readline().split(' (')[0])
 			else:
 				for line in file.readlines():
-					if ('README' in filename and line.startswith("*Current version*")):
+					if ('README' in filename and line.startswith("Current version")):
 						versions.append(line.split(': ')[1].replace('\n',''))
 						break
 					elif ('setup' in filename and line.strip().startswith("version =")):
@@ -73,7 +73,7 @@ def set_versions(version, message):
 				lines = file.readlines()
 			
 			for ii, line in enumerate(lines):
-				if ('README' in filename and line.startswith("*Current version*")):
+				if ('README' in filename and line.startswith("Current version")):
 					lines[ii] = f"*Current version*: {version}\n"
 					break
 				elif ('setup' in filename and line.strip().startswith("version = ")):

@@ -1,6 +1,6 @@
 {
     "content-type": "application/vnd.matplotlib.colormap-v1+json",
-    "name": "red2orange",
+    "name": "R2O",
     "license": "http://creativecommons.org/publicdomain/zero/1.0/",
     "usage-hints": [
         "red-green-colorblind-safe",

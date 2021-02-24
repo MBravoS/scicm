@@ -6,34 +6,38 @@ The package is available for installation using `>pip install scicm`, though you
 by passing `cmap='scicm.colour_map_name'` to any plotting function that has `cmap` as one of its keywords.
 
 Available colour maps:
-- Linear:
-    - 'blue2cyan'
-    - 'blue'
-    - 'cyan'
-    - 'green2yellow'
-    - 'magenta'
-    - 'orange'
-    - 'purple2magenta'
-    - 'red2orange'
-    - 'stone'
-    - 'yellow'
-    - 'blue2purple'
-    - 'cyan2green'
-    - 'green'
-    - 'magenta2red'
-    - 'orange2yellow'
-    - 'purple'
-    - 'red'
+- Monotonic:
+    - Single colour:
+        - 'Blue'
+        - 'Cyan'
+        - 'Green'
+        - 'Magenta'
+        - 'Orange'
+        - 'Purple'
+        - 'Red'
+        - 'Stone'
+        - 'Yellow'
+    - Two colours:
+        - 'B2C'
+        - 'B2P'
+        - 'C2G'
+        - 'G2Y'
+        - 'M2R'
+        - 'O2Y'
+        - 'P2M'
+        - 'R2O'
 - Diverging:
-    - 'BkG'
-    - 'CkO'
-    - 'GwP'
-    - 'BkR'
-    - 'BwR'
-    - 'GkP'
-    - 'PkO'
-    - 'YkM'
+    - Black centre:
+        - 'BkG'
+        - 'BkR'
+        - 'CkO'
+        - 'GkP'
+        - 'PkO'
+        - 'YkM'
+    - White centre:
+        - 'BwR'
+        - 'GwP'
 - Special:
-    - 'quartile'
+    - 'Quartile'
 
-Current version: 0.0.3
+Current version: 0.0.4
