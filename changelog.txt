@@ -1,3 +1,6 @@
+0.0.6 (26/02/2021):
+-Added cylic maps.
+
 0.0.5 (26/02/2021):
 -Renamed cmaps.py as cm.py (consistent with matplotlib and cmocean).
 
