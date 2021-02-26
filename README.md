@@ -11,4 +11,4 @@ Available colour maps:
 ![cmaps2](/docs/scicm_diverging.png)
 ![cmaps3](/docs/scicm_miscellaneous.png)
 
-Current version: 0.0.4
+*Current version*: 0.0.5
