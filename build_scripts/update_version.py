@@ -74,7 +74,7 @@ def set_versions(version, message):
 			
 			for ii, line in enumerate(lines):
 				if ('README' in filename and line.startswith("Current version")):
-					lines[ii] = f"*Current version*: {version}\n"
+					lines[ii] = f"Current version: {version}\n"
 					break
 				elif ('setup' in filename and line.strip().startswith("version = ")):
 					lines[ii] = f"version = {version}\n"

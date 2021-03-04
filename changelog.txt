@@ -1,3 +1,6 @@
+0.0.7 (04/03/2021):
+-Added first multicolour map (Tropical).
+
 0.0.6 (26/02/2021):
 -Added cylic maps.
 
