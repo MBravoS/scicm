@@ -25,39 +25,39 @@ The last set is composed of colour maps with special use cases. *Day* and *Night
 
 Here is an example application of **scicm**:
 
-.. code:: python
+```python
+#Importing libraries
+import scicm
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.gridspec as gs
 
-    #Importing libraries
-    import scicm
-    import numpy as np
-    import matplotlib.pyplot as plt
-    import matplotlib.gridspec as gs
-    
-    # Generating random data
-    rng=np.random.default_rng()
-    x=np.concatenate([rng.normal(-1,0.5,60000),rng.normal(1,0.8,40000)],axis=0)
-    y=x+np.cos(x/3)*rng.normal(0,1,100000)
-    
-    # Plotting
-    
-    fig=plt.figure(figsize=(12,8))
-    spec=gs.GridSpec(nrows=2,ncols=2,figure=fig,wspace=0,hspace=0,left=0.0,right=0.999,bottom=0.001,top=1.0)
-    fax=[fig.add_subplot(spec[0,0]),fig.add_subplot(spec[0,1]),fig.add_subplot(spec[1,0]),fig.add_subplot(spec[1,1])]
-    
-    for f in fax:
-        f.set_xticks([])
-        f.set_yticks([])
-    
-    fax[0].hexbin(x,y,lw=0,cmap='scicm.Cyan',mincnt=1) # Using the registered names with matplotlib
-    fax[0].text(-3.3,4.6,'Cyan',fontsize=20)
-    fax[1].hexbin(x,y,lw=0,cmap='scicm.C2G',mincnt=1)
-    fax[1].text(-3.3,4.6,'C2G',fontsize=20)
-    fax[2].hexbin(x,y,lw=0,cmap=scicm.cm.YkM,mincnt=1) # Using the colour map objects
-    fax[2].text(-3.3,4.6,'YkM',fontsize=20)
-    fax[3].hexbin(x,y,lw=0,cmap=scicm.cm.Edges,mincnt=1)
-    fax[3].text(-3.3,4.6,'Edges',fontsize=20)
-    
-    plt.show()
+# Generating random data
+rng=np.random.default_rng()
+x=np.concatenate([rng.normal(-1,0.5,60000),rng.normal(1,0.8,40000)],axis=0)
+y=x+np.cos(x/3)*rng.normal(0,1,100000)
+
+# Plotting
+
+fig=plt.figure(figsize=(12,8))
+spec=gs.GridSpec(nrows=2,ncols=2,figure=fig,wspace=0,hspace=0,left=0.0,right=0.999,bottom=0.001,top=1.0)
+fax=[fig.add_subplot(spec[0,0]),fig.add_subplot(spec[0,1]),fig.add_subplot(spec[1,0]),fig.add_subplot(spec[1,1])]
+
+for f in fax:
+    f.set_xticks([])
+    f.set_yticks([])
+
+fax[0].hexbin(x,y,lw=0,cmap='scicm.Cyan',mincnt=1) # Using the registered names with matplotlib
+fax[0].text(-3.3,4.6,'Cyan',fontsize=20)
+fax[1].hexbin(x,y,lw=0,cmap='scicm.C2G',mincnt=1)
+fax[1].text(-3.3,4.6,'C2G',fontsize=20)
+fax[2].hexbin(x,y,lw=0,cmap=scicm.cm.YkM,mincnt=1) # Using the colour map objects
+fax[2].text(-3.3,4.6,'YkM',fontsize=20)
+fax[3].hexbin(x,y,lw=0,cmap=scicm.cm.Edges,mincnt=1)
+fax[3].text(-3.3,4.6,'Edges',fontsize=20)
+
+plt.show()
+```
 
 This is the resulting image:
 ![example](/docs/README_ex.png)
