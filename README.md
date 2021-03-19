@@ -27,6 +27,7 @@ The last set is composed of colour maps with special use cases:
 - *Tropical*: a linear map that has been designed for plots where the intention is to highlight broad regions of the data, through the use of a wide range of hues. For this purpose also it has been designed with a less than hlaf of the lightness dynamic range than our other linear maps. Due to these design choices, is not very colourblind-friendly, but for red-green colourblindness it appears as two regions with the transition near the middle of the map, so it is not the worst compromise.
 - *Edges*: a linear map inspired by cmocean's Oxy. It has *Stone* as a base, but with the notable distinction that for \[normalised\] values below 0.2 and above 0.8 it changes colour (to blue an yellow, respectively). This is meant to highlight extreme values of the data.
 - *Quartile*: an experimental colour map, composed of four linear segments of significantly different hues, though still perfectly linear in greyscale. This colour map is meant as an option instead of filled contours, as it displays information inside the contours which would be otherwise lost, or to be used to sample colours from.
+
 ![cmaps3](/docs/scicm_miscellaneous.png)
 
 ### Example
