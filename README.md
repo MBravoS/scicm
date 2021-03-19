@@ -38,7 +38,6 @@ x=np.concatenate([rng.normal(-1,0.5,60000),rng.normal(1,0.8,40000)],axis=0)
 y=x+np.cos(x/3)*rng.normal(0,1,100000)
 
 # Plotting
-
 fig=plt.figure(figsize=(12,8))
 spec=gs.GridSpec(nrows=2,ncols=2,figure=fig,wspace=0,hspace=0,left=0.0,right=0.999,bottom=0.001,top=1.0)
 fax=[fig.add_subplot(spec[0,0]),fig.add_subplot(spec[0,1]),fig.add_subplot(spec[1,0]),fig.add_subplot(spec[1,1])]
