@@ -6,11 +6,11 @@
 
 The package is available for installation using pip:
 
-    `>pip install scicm`
+    >pip install scicm
     
 though you may get directly from GitHub using
 
-    `>pip install git+https://github.com/MBravoS/splotch.git@master`.
+    >pip install git+https://github.com/MBravoS/splotch.git@master
 
 On import the colour maps are registered with matplotlib, so they can be used by passing `cmap='scicm.colour_map_name'` to any plotting function that has `cmap` as one of its keywords. The colour maps objects are also accessible suing `scim.cm.colour_map_name`.
 
