@@ -26,6 +26,7 @@ The last set is composed of colour maps with special use cases. *Day* and *Night
 Here is an example application of **scicm**:
 
 .. code:: python
+
     #Importing libraries
     import scicm
     import numpy as np
