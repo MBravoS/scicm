@@ -10,7 +10,7 @@ cmaps=['B2C','B2P','BkG','BkR','Blue','BwR','C2G',
        'CkO','Cyan','Day','Edges','G2Y','GkP','Green',
        'GwP','M2R','Magenta','Night','O2Y','Orange',
        'P2M','PkO','Purple','Quartile','R2O','Red',
-       'Stone','Tropical','Yellow','YkM']
+       'Ripe','Stone','Tropical','Yellow','YkM']
 
 cmap_dict={}
 data_path=os.path.join(os.path.split(__file__)[0],'cm_data')
