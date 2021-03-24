@@ -24,7 +24,7 @@ The third set is composed of diverging colour maps, which are intended to be use
 ![cmaps2](/examples/scicm_diverging.png)
 The last set is composed of colour maps with special use cases:
 - *Day* and *Night*: These are cyclic maps, linear versions of the *twiligfht_shifted* and *twilight* maps from matplotlib, respectively. Cyclic maps should only be used for cyclic data, an easy example being angles, where for example -180° is the same as 180°.
-- *Tropical* and *Ripe*: Linear maps that have been designed for plots where the intention is to highlight broad regions of the data, through the use of a wide range of hues. For this purpose also they have been designed with less than half of the lightness dynamic range than our other linear maps. Due to these design choices, they are not as colourblind-friendly as the rest of the maps. For red-green colourblindness *Tropical* reduces to two roughly equally divided regions, while *Ripe* becomes a central region with two regions at the extremes.
+- *Garnet*, *Ripe* and *Tropical*: Linear maps that have been designed for plots where the intention is to highlight broad regions of the data, through the use of a wide range of hues. For this purpose also they have been designed with less than half of the lightness dynamic range than our other linear maps. Due to these design choices, they are not as colourblind-friendly as the rest of the maps.
 - *Edges*: A linear map inspired by cmocean's Oxy. It has *Stone* as a base, but with the notable distinction that for \[normalised\] values below 0.2 and above 0.8 it changes colour (to blue an yellow, respectively). This is meant to highlight the extreme values of the data.
 - *Quartile*: An experimental colour map, composed of four linear segments of significantly different hues, though still perfectly linear in greyscale. This colour map is meant as an option instead of filled contours, as it displays information inside the contours that would be otherwise lost, or to be used to sample colours from.
 
@@ -72,4 +72,4 @@ plt.show()
 This is the resulting image:
 ![example](/examples/README_ex.png)
 
-Current version: 0.2.0
+Current version: 0.2.1
