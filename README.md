@@ -72,4 +72,4 @@ plt.show()
 This is the resulting image:
 ![example](/examples/README_ex.png)
 
-Current version: 0.1.0
+Current version: 0.2.0

@@ -7,7 +7,7 @@ from matplotlib import cm
 from matplotlib.colors import LinearSegmentedColormap
 
 cmaps=['B2C','B2P','BkG','BkR','Blue','BwR','C2G',
-       'CkO','Cyan','Day','Edges','G2Y','GkP','Green',
+       'CkO','Cyan','Day','Edges','G2Y','Garnet','GkP','Green',
        'GwP','M2R','Magenta','Night','O2Y','Orange',
        'P2M','PkO','Purple','Quartile','R2O','Red',
        'Ripe','Stone','Tropical','Yellow','YkM']
