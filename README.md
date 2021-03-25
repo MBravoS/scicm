@@ -18,12 +18,12 @@ Upon importing scicm, the colour maps are registered with matplotlib, so they ca
 
 #### Monochromatic colour maps
 The first two sets of colour maps are meant as a replacement for the sequential colour maps from matplotlib. All are designed with the same dynamic range in lightness, which means that small value changes are equally distinct. The first set contains the colour maps designed as general-purpose, being not only perceptually linear but also lacking strong hue changes, which could mistakenly lead the eye to certain value ranges. This *near-constant* hue also ensures that they are all colourblind-friendly.
-![cmaps0](/examples/scicm_linear1.png)
+![cmaps0](/examples/scicm_monochromat.png)
 <br><br>
 
-#### Bichromatic colour maps
+#### Dichromatic colour maps
 The colour maps in the second set contain small and simple hue changes as a function of lightness, intended to transition from one hue to the other roughly halfway in the value range. These colour maps should be used when a greater differentiation between low and high values is desired. Of course, these colour maps are not equally colourblind-friendly, so we recommend checking the viscm visualisations before choosing one.
-![cmaps1](/examples/scicm_linear2.png)
+![cmaps1](/examples/scicm_dichromat.png)
 <br><br>
 
 #### Diverging colour maps
@@ -73,4 +73,4 @@ plt.show()
 This is the resulting image:
 ![example](/examples/README_ex.png)
 
-Current version: 0.2.2
+Current version: 0.2.3
