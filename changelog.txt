@@ -1,3 +1,6 @@
+0.3.0 (17/05/2021):
+-Added inverted names of existing diverging colour maps (e.g., now OkC is a valid name and is equal to CkO_r).
+
 0.2.1 (24/03/2021):
 -Small update to Garnet
 

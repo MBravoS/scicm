@@ -12,6 +12,9 @@ cmaps=['B2C','B2P','BkG','BkR','Blue','BwR','C2G',
        'P2M','PkO','Purple','Quartile','R2O','Red',
        'Ripe','Stone','Tropical','Yellow','YkM']
 
+diverging={'BkG':'GkB','BkR':'RkB','BwR':'RwB','CkO':'OkC',
+           'GkP':'PkG','GwP':'PwG','PkO':'OkP','YkM':'MkY'}
+
 cmap_dict={}
 data_path=os.path.join(os.path.split(__file__)[0],'cm_data')
 for cmap in cmaps:
@@ -19,6 +22,9 @@ for cmap in cmaps:
     cmap_data=np.loadtxt(cmap_path)
     cmap_dict[cmap]=LinearSegmentedColormap.from_list(cmap,cmap_data,N=cmap_data.shape[0])
     cmap_dict[f'{cmap}_r']=LinearSegmentedColormap.from_list(f'{cmap}_r',cmap_data[::-1,:],N=cmap_data.shape[0])
+    if cmap in diverging.keys():
+        cmap_dict[f'{diverging[cmap]}_r']=LinearSegmentedColormap.from_list(cmap,cmap_data,N=cmap_data.shape[0])
+        cmap_dict[diverging[cmap]]=LinearSegmentedColormap.from_list(f'{cmap}_r',cmap_data[::-1,:],N=cmap_data.shape[0])
 
 for cmap in cmap_dict.keys():
     cm.register_cmap(f'scicm.{cmap}',cmap_dict[cmap])
