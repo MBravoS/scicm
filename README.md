@@ -27,7 +27,7 @@ The colour maps in the second set contain small and simple hue changes as a func
 <br><br>
 
 #### Diverging colour maps
-The third set is composed of diverging colour maps, which are intended to be used only when visualising data that is centered around a critical value. In most cases, the middle point is the darkest, as this clearly distinguishes the middle values from lack of data without the need to set the figure background to a colour other than white. The two colour maps that have a light middle point (*BwR* and *GwP*) add choices for cases where that is not a concern. All these colour maps span the same dynamic range in lightness on each side and across maps and are intended to be colourblind-friendly to a good degree.
+The third set is composed of diverging colour maps, which are intended to be used only when visualising data that is centered around a critical value. In most cases, the middle point is the darkest, as this clearly distinguishes the middle values from lack of data without the need to set the figure background to a colour other than white. The two colour maps that have a light middle point (*BwR* and *GwP*) add choices for cases where that is not a concern. All these colour maps span the same dynamic range in lightness on each side and across maps and are intended to be colourblind-friendly to a good degree. For ease of use, all these colourmaps are also registered with their inverse names (e.g., *PkG*, which is equivalent to *GkP_r*).
 ![cmaps2](/examples/scicm_diverging.png)
 <br><br>
 
