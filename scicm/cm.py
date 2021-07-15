@@ -6,14 +6,14 @@ import numpy as np
 from matplotlib import cm
 from matplotlib.colors import LinearSegmentedColormap
 
-cmaps=['B2C','B2P','BkG','BkR','Blue','BwR','C2G',
-       'CkO','Cyan','Day','Edges','G2Y','Garnet','GkP','Green',
+cmaps=['B2C','B2P','BkG','BkR','Blue','BwG','BwR','C2G',
+       'CkO','CwO','Cyan','Day','Edges','G2Y','Garnet','GkP','Green',
        'GwP','M2R','Magenta','Night','O2Y','Orange',
-       'P2M','PkO','Purple','Quartile','R2O','Red',
-       'Ripe','Stone','Tropical','Yellow','YkM']
+       'P2M','PkO','Purple','PwO','Quartile','R2O','Red',
+       'Ripe','Stone','Tropical','Yellow','YkB','YkM']
 
-diverging={'BkG':'GkB','BkR':'RkB','BwR':'RwB','CkO':'OkC',
-           'GkP':'PkG','GwP':'PwG','PkO':'OkP','YkM':'MkY'}
+diverging={'BkG':'GkB','BkR':'RkB','BwG':'GwB','BwR':'RwB','CkO':'OkC','CwO':'OwC',
+           'GkP':'PkG','GwP':'PwG','PkO':'OkP','PwO':'OwP','YkM':'MkY','YkB':'BkY'}
 
 cmap_dict={}
 data_path=os.path.join(os.path.split(__file__)[0],'cm_data')
