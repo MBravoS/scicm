@@ -1,3 +1,6 @@
+0.4.0 (08/07/2021):
+-Added new cmap tools ported from cmocean. Ran the full package through pylint and acted accordingly
+
 0.3.0 (17/05/2021):
 -Added inverted names of existing diverging colour maps (e.g., now OkC is a valid name and is equal to CkO_r).
 
