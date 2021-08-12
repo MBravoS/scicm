@@ -1,209 +1,129 @@
-'''This module contain auxiliary functions for easy manipulation of the scicm colour maps.
-Unless otherwise noted, the following code is a direct implementation of a choice of the tools
-available in the cmocean package
-(https://github.com/matplotlib/cmocean/blob/master/cmocean/tools.py).'''
+'''This module contain auxiliary functions for easy manipulation of the scicm colour maps.'''
 
-import sys
+import warnings
 import numpy as np
+import matplotlib.cm as cm
 from matplotlib.colors import LinearSegmentedColormap as LSC
 
-if sys.version_info>(3,):
-    _string_types=(str,np.str_,np.unicode_)
-else:
-    _string_types=(basestring,np.str_,np.unicode_)
-
-def gen_cmap(rgbin,N=256):
-    '''Input an array of rgb values to generate a colormap.
-    :param rgbin: An [mx3] array, where m is the number of input color triplets which
-         are interpolated between to make the colormap that is returned. hex values
-         can be input instead, as [mx1] in single quotes with a #.
-    :param N=10: The number of levels to be interpolated to.
+def crop(cmapin,vmin=0.0,vmax=1.0,name_newcmap='newcmap'):
+    '''Crop colourmap between vmin/vmax values. Can also register the new colourmap with matplotlib.
+    
+    Parameters
+    ----------
+    cmapin : str or object
+        A string with the name of the colourmap or the colourmap object.
+    vmin/vmax : float, optional
+        If given, the normalised low/high limits to select from the source colourmap. Defaults to
+        vmin=0 and vmax=1 (i.e., returns the input colourmap).
+    name_newcmap : str, optional
+        If given, defines the name to register with matplotlib.
+    Returns
+    -------
+    newcmap
+        Colourmap object with the new colour map.
     '''
     
-   # rgb inputs here
-    if not isinstance(rgbin[0],_string_types):
-       # normalize to be out of 1 if out of 256 instead
-        if rgbin.max()>1:
-            rgbin=rgbin/256.
+    if vmin>vmax:
+        raise ValueError('The value of vmin must be lower than vmax')
+    if vmin<0.0 or vmax>1.0:
+        raise ValueError('The values of vmin/vmax must be in the closed range [0,1]')
     
-    cmap=LSC.from_list('mycmap',rgbin,N=N)
-    return cmap
+    if type(cmapin) is str:
+        cmapin=cm.get_cmap(cmapin)
+    
+    cmap_data=cmapin(np.linspace(vmin,vmax,256))
+    newcmap=LSC.from_list(name_newcmap,cmap_data,N=cmap_data.shape[0])
+    
+    if name_newcmap!='newcmap':
+        cm.register_cmap(name_newcmap,newcmap)
+    
+    return(newcmap)
 
-def get_dict(cmap,N=256):
-    '''Change from rgb to dictionary that LinearSegmentedColormap expects. Code from
-    https://mycarta.wordpress.com/2014/04/25/convert-color-palettes-to-python-matplotlib-colormaps/
-    and http://nbviewer.ipython.org/github/kwinkunks/notebooks/blob/master/Matteo_colourmaps.ipynb
+def stitch(cmapinlist,vlims,tpoints,name_newcmap='newcmap'):
+    '''Stich together the selected crops from the given list of colourmaps. Can also register the
+    new colourmap with matplotlib.
+    
+    Parameters
+    ----------
+    cmapinlist : list
+        Each element must be either a string with the name of each colourmap or the
+        colourmap objects.
+    vlims : numpy.ndarray
+        A (N,2) array that contains the vmin and vmax values used for cropping the colourmaps
+        and setting the ranges that each crop will take on the new colourmap. vlims[:,0] are
+        the low limits (vmin) and vlims[:,1] the high limits (vmax).
+    tpoints : list, tuple or numpy.ndarray
+        Contains the transition points where the new colourmap will transition from one input
+        colourmap to the next.
+    name_newcmap : str, optional
+        If given, defines the name to register with matplotlib.
+    Returns
+    -------
+    newcmap
+        Colourmap object with the new colour map.
     '''
     
-    x=np.linspace(0,1,N) # position of sample n - ranges from 0 to 1
-    rgb=cmap(x)
+    if type(cmapinlist) is not list:
+        raise TypeError()
+    for vcheck in vlims:
+        if vcheck[0]>vcheck[1]:
+            raise ValueError('The value of vmin must be lower than vmax')
+    if np.sum((vlims<0.0)|(vlims>1.0))>0:
+        raise ValueError('The values in vlims must be in the closed range [0,1]')
+    if type(tpoints) is not np.ndarray:
+        tpoints=np.array(tpoints)
+    if np.sum(np.diff(tpoints)<0)>1:
+        raise ValueError('tpoints must be monotonically increasing in value')
+    if np.sum((tpoints<=0.0)|(tpoints>=1.0)):
+        raise ValueError('The values of tpoints must be in the open range (0,1)')
     
-   # flip colormap to follow matplotlib standard
-    if rgb[0,:].sum()<rgb[-1,:].sum():
-        rgb=np.flipud(rgb)
+    for i in range(len(cmapinlist)):
+        if type(cmapinlist[i]) is str:
+            cmapinlist[i]=cm.get_cmap(cmapinlist[i])
     
-    b3=rgb[:,2] # value of blue at sample n
-    b2=rgb[:,2] # value of blue at sample n
+    tpoints=np.array([0]+[t for t in tpoints]+[1])
+    nstep=np.empty(len(cmapinlist))
+    test_range=np.linspace(0,1,256)
+    for i in range(len(cmapinlist)):
+        nstep[i]=np.sum((test_range>tpoints[i])&(test_range<tpoints[i+1]))
+    nstep=np.where(nstep<1,1,nstep)
+    if np.sum(nstep)!=256:
+        nstep[-1]+=256-np.sum(nstep)
+    nstep=nstep.astype('int')
     
-   # Setting up columns for tuples
-    g3=rgb[:,1]
-    g2=rgb[:,1]
+    cmaplist_data=[cmapinlist[i](np.linspace(vlims[i,0],vlims[i,1],nstep[i]))
+                   for i in range(len(cmapinlist))]
+    cmap_data=np.concatenate(cmaplist_data,axis=0)
     
-    r3=rgb[:,0]
-    r2=rgb[:,0]
+    newcmap=LSC.from_list(name_newcmap,cmap_data,N=cmap_data.shape[0])
+    if name_newcmap!='newcmap':
+        cm.register_cmap(name_newcmap,newcmap)
     
-   # Creating tuples
-    R=list(zip(x,r2,r3))
-    G=list(zip(x,g2,g3))
-    B=list(zip(x,b2,b3))
-    
-   # Creating dictionary
-    k=['red','green','blue']
-    LinearL=dict(zip(k,[R,G,B]))
-    
-    return LinearL
+    return(newcmap)
 
-def crop(cmapin,vmin,vmax,pivot,N=None,dmax=None):
-    #NEED TO UPDATE EXAMPLES TO USE SCICM MAPS
-    '''Crop end or ends of a diverging colormap by vmin/vmax values.
-    :param cmap: A colormap object, like cmocean.cm.matter.
-    :param vmin/vmax: vmin/vmax for use in plot with colormap.
-    :param pivot: center point to be used in plot with diverging colormap.
-    :param N=None: User can specify the number of rows for the outgoing colormap.
-        If unspecified, N from incoming colormap will be used and values will
-        be interpolated as needed to fill in rows.
-    :param dmax=None: dmax is the highest number to be included in a plot with
-        the colormap; values higher in magnitude than dmax are removed from both
-        ends of colormap. It should be less than abs(vmin) and abs(vmax), which
-        should be equal for this parameter to be used.
-    Outputs resultant colormap object.
-    This function can be used for sequential and other non-diverging colormaps
-        but it is easier to use that way through crop_by_percent().
-    This should be useful for plotting bathymetry and topography data with the
-        topo colormap when max bathymetry value is different from max topography.
-    Example usage:
-       # example for crop on min end of diverging colormap
-        vmin=-2; vmax=5; pivot=0
-        newcmap=crop(cmocean.cm.curl, vmin, vmax, pivot)
-        A=np.random.randint(vmin, vmax, (5,5))
-        plt.pcolormesh(A, vmin=vmin, vmax=vmax, cmap=newcmap)
-        plt.colorbar()
-       # example for crop on max end of diverging colormap
-        vmin=-10; vmax=8; pivot=0
-        newcmap=crop(cmocean.cm.delta, vmin, vmax, pivot)
-        A=np.random.randint(vmin, vmax, (5,5))
-        plt.pcolormesh(A, vmin=vmin, vmax=vmax, cmap=newcmap)
-        plt.colorbar()
+def merge(cmapinlist,tpoints,name_newcmap='newcmap'):
+    '''Merge together the selected crops from the given list of colourmaps. Can also register the
+    new colourmap with matplotlib. This is a light wrapper around scicm.tools.stitch, which uses
+    the transition points as the vmin/vmax values to crop each input colour map.
+    
+    Parameters
+    ----------
+    cmapinlist : list
+        Each element must be either a string with the name of each colourmap or the
+        colourmap objects.
+    tpoints : list, tuple or numpy.ndarray
+        Contains the transition points where the new colourmap will transition from one input
+        colourmap to the next.
+    name_newcmap : str, optional
+        If given, defines the name to register with matplotlib.
+    Returns
+    -------
+    newcmap
+        Colourmap object with the new colour map.
     '''
     
-    assert pivot>=vmin and pivot<=vmax
+    vlims=np.array([0]+[t for t in tpoints]+[1])
+    vlims=np.array([[vlims[i],vlims[i+1]] for i in range(len(cmapinlist))])
+    newcmap=stitch(cmapinlist,vlims,tpoints,name_newcmap)
     
-   # dmax used if and only if ends are equal
-    if vmax-pivot==pivot-vmin:
-        assert dmax is not None
-    
-   # allow user to input N, but otherwise use N for incoming colormap
-    if N is None:
-        N=cmapin.N
-    else:
-        N=N
-    
-   # ratio of the colormap to remove
-    below=pivot-vmin # below pivot
-    above=vmax-pivot # above pivot
-    
-    ranges=(above,below)
-    half_range=max(ranges)
-    full_range=half_range*2
-    reduced_range=min(ranges)
-    range_to_keep=half_range+reduced_range
-    
-    ratio=(full_range-range_to_keep)/full_range
-    
-    if below<above: # reducing colormap on side below pivot
-       # start colormap partway through
-        shortcmap=cmapin(np.linspace(0,1,N))[int(np.ceil(N*ratio)):]
-
-    elif above<below: # reducing colormap on side above pivot
-       # end colormap early
-        shortcmap=cmapin(np.linspace(0,1,N))[:-int(np.ceil(N*ratio))]
-
-    elif (below==above) and (dmax is not None): # equal
-        ratio=dmax/full_range
-        shortcmap=cmapin(np.linspace(0,1,N))[int(np.ceil(N*ratio)):-int(np.ceil(N*ratio))]
-    
-   # interpolate to original number of rows in colormap
-    newrgb=np.zeros((N,4))
-    shnum=shortcmap.shape[0]
-    for i in range(4): # loop through each column of cmap
-        newrgb[:,i]=np.interp(np.linspace(0,shnum,N),np.arange(0,shnum),shortcmap[:,i])
-    newcmap=gen_cmap(newrgb)
-    
-    return newcmap
-
-def crop_by_percent(cmap,per,which='both',N=None):
-    #NEED TO UPDATE EXAMPLES TO USE SCICM MAPS
-    '''Crop end or ends of a colormap by per percent.
-    :param cmap: A colormap object, like cmocean.cm.matter.
-    :param per: Percent of colormap to remove. If which=='both', take this
-        percent off both ends of colormap. If which=='min' or which=='max',
-        take percent only off the specified end of colormap.
-    :param which='both': which end or ends of colormap to cut off. which='both'
-        removes from both ends, which='min' from bottom end, and which='max'
-        from top end.
-    :param N=None: User can specify the number of rows for the outgoing colormap.
-        If unspecified, N from incoming colormap will be used and values will
-        be interpolated as needed to fill in rows.
-    Outputs resultant colormap object.
-    This is a wrapper around crop() to make it easier to use for cropping
-        based on percent.
-    Examples:
-       # example with oxy map: cut off yellow part which is top 20%
-       # compare with full colormap
-        vmin=0; vmax=10; pivot=5
-        A=np.random.randint(vmin, vmax, (5,5))
-        fig, axes=plt.subplots(1, 2)
-        mappable=axes[0].pcolormesh(A, vmin=vmin, vmax=vmax, cmap=cmocean.cm.oxy)
-        fig.colorbar(mappable, ax=axes[0])
-        vmin=0; vmax=8; pivot=5
-        newcmap=crop_by_percent(cmocean.cm.oxy, 20, which='max', N=None)
-        plt.figure()
-        plt.pcolormesh(A, vmin=vmin, vmax=vmax, cmap=newcmap)
-        plt.colorbar()
-       # example with oxy map: cut off red part which is bottom 20%
-       # compare with full colormap
-        vmin=0; vmax=10; pivot=5
-        A=np.random.randint(vmin, vmax, (5,5))
-        fig, axes=plt.subplots(1, 2)
-        mappable=axes[0].pcolormesh(A, vmin=vmin, vmax=vmax, cmap=cmocean.cm.oxy)
-        fig.colorbar(mappable, ax=axes[0])
-        vmin=2; vmax=10; pivot=5
-        A=np.random.randint(vmin, vmax, (5,5))
-        newcmap=crop_by_percent(cmocean.cm.oxy, 20, which='min', N=None)
-        plt.figure()
-        plt.pcolormesh(A, vmin=vmin, vmax=vmax, cmap=newcmap)
-        plt.colorbar()
-       # crop both dark ends off colormap to reduce range
-        newcmap=crop_by_percent(cmocean.cm.balance, 10, which='both', N=None)
-        plt.figure()
-        A=np.random.randint(-5, 5, (5,5))
-        plt.pcolormesh(A, vmin=vmin, vmax=vmax, cmap=newcmap)
-        plt.colorbar()
-    '''
-    
-    if which=='both': # take percent off both ends of cmap
-        vmin=-100;vmax=100;pivot=0
-        dmax=per
-
-    elif which=='min': # take percent off bottom of cmap
-        vmax=10;pivot=5
-        vmin=(0+per/100)*2*pivot
-        dmax=None
-
-    elif which=='max': # take percent off top of cmap
-        vmin=0;pivot=5
-        vmax=(1-per/100)*2*pivot
-        dmax=None
-    
-    newcmap=crop(cmap,vmin,vmax,pivot,dmax=dmax,N=N)
-    return newcmap
+    return(newcmap)

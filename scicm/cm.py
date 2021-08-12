@@ -1,5 +1,6 @@
 '''This module reads the colour map data from the cm folder, set ups the corresponding colour
 maps and their corresponding reverse order maps, and registers them with matplotlib '''
+
 import os
 import numpy as np
 from matplotlib import cm
