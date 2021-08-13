@@ -79,8 +79,10 @@ plt.show()
 
 ```python
 # Generating random image
-x=np.concatenate([rng.uniform(0,3,60000),rng.normal(0.6,0.15,20000),rng.normal(2.2,0.15,12000),rng.normal(1.8,0.15,8000)],axis=0)
-y=np.concatenate([rng.uniform(0,1,60000),rng.normal(0.4,0.15,20000),rng.normal(0.7,0.15,12000),rng.normal(0.2,0.15,8000)],axis=0)
+x=np.concatenate([rng.uniform(0,3,60000),rng.normal(0.6,0.15,20000),
+                  rng.normal(2.2,0.15,12000),rng.normal(1.8,0.15,8000)],axis=0)
+y=np.concatenate([rng.uniform(0,1,60000),rng.normal(0.4,0.15,20000),
+                  rng.normal(0.7,0.15,12000),rng.normal(0.2,0.15,8000)],axis=0)
 z=np.ones(len(x))
 
 def overdensity(data):
