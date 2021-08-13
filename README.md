@@ -41,7 +41,7 @@ The last set is composed of colour maps with special use cases:
 
 ### Example
 
-Here is an example application of **scicm**:
+Here is an example application of **scicm** colour maps:
 
 ```python
 #Importing libraries
@@ -72,5 +72,32 @@ plt.show()
 
 This is the resulting image:
 ![example](/examples/README_ex.png)
+
+Here is an example of the colour map manipulation tools inclided in **scicm**:
+
+```python
+# Colour map manipulation
+
+shortBkR=scicm.tools.crop('scicm.BkR',vmin=0.3,vmax=1.0)
+BkP=scicm.tools.merge(['scicm.BkR','scicm.OkP'],[0.5])
+asymmetricBkR=scicm.tools.stitch(['scicm.BkR','scicm.BkR'],np.array([[0.0,0.5],[0.5,1.0]]),[0.2])
+
+fig, axes = plt.subplots(nrows=2,ncols=2,figsize=(12,8),gridspec_kw=dict(wspace=0.0,hspace=0.0))
+
+axes[0,0].hexbin(x,y,lw=0,mincnt=1, cmap='scicm.BkR') # Using the registered names with matplotlib
+axes[0,1].hexbin(x,y,lw=0,mincnt=1, cmap=shortBkR) # Reversing the colour map
+axes[1,0].hexbin(x,y,lw=0,mincnt=1, cmap=BkP) # Using the colour map objects
+axes[1,1].hexbin(x,y,lw=0,mincnt=1, cmap=asymmetricBkR)
+
+for ax, txt in zip(axes.flatten(),['CyaBkRn','shortBkR','BkP','asymmetricBkR']):
+    ax.text(-3.3,4.6,txt,fontsize=20)
+    ax.set_xticks([])
+    ax.set_yticks([])
+
+plt.show()
+```
+
+This is the resulting image:
+![example](/examples/README_ex2.png)
 
 Current version: 0.5.0
