@@ -1,13 +1,11 @@
 # scicm: Science Colour Maps
-
-**scicm** is a small package containing several colour maps, aimed at filling gaps in the availability of good (i.e. perceptually linear) in both [matplotlib](https://matplotlib.org/stable/tutorials/colors/colormaps.html) and in other available packages (like [cmocean](https://github.com/matplotlib/cmocean) and [CMasher](https://github.com/1313e/CMasher)). All colour maps in this package have been created using [viscm](https://github.com/matplotlib/viscm). The full viscm visualisations are available in the [viscm_files/visualisation_samples](https://github.com/MBravoS/scicm/tree/master/viscm_files/visualisation_samples) folder of this repository.
+**scicm** is a small package containing several colour maps, aimed at filling gaps in the availability of good (i.e. perceptually linear) in both [matplotlib](https://matplotlib.org/stable/tutorials/colors/colormaps.html) and in other available packages (like [cmocean](https://github.com/matplotlib/cmocean) and [CMasher](https://github.com/1313e/CMasher)). All colour maps in this package have been created using [viscm](https://github.com/matplotlib/viscm). The full viscm visualisations are available in the [viscm_files/visualisation_samples](https://github.com/MBravoS/scicm/tree/master/viscm_files/visualisation_samples) folder of this repository. Also included are utilities for colour map manipulation.
 
 ### Installation and use
-
 The package is available for installation using pip:
 
     >pip install scicm
-    
+
 Although you may wish to install it directly from GitHub using:
 
     >pip install git+https://github.com/MBravoS/splotch.git@master
@@ -39,9 +37,15 @@ The last set is composed of colour maps with special use cases:
 - *Quartile*: An experimental colour map, composed of four linear segments of significantly different hues, though still perfectly linear in greyscale. This colour map is meant as an alternative to filled contours, as it displays information inside the contours that would be otherwise lost.
 ![cmaps3](/examples/scicm_miscellaneous.png)
 
-### Example
+### Included Tools
+All tools are part of the `scicm.tools` submodule. These tools are:
+- `scicm.tools.crop(cmapin,vmin=0.0,vmax=1.0,name_newcmap='newcmap')`: Generates a new colour map based on `cmapin`, cropped to only include the colours associated with the `[vmin,vmax]` range of values. If given a name through `name_newcmap` it will register the colour map with matplotlib (only for the current session).
+- `scicm.tools.merge(cmapinlist,tpoints,name_newcmap='newcmap')`: Generates a new colour map by merging the colour maps listed in `cmapinlist`, transitioning from the first on the list the the following ones at the values given in `tpoints`. If given a name through `name_newcmap` it will register the colour map with matplotlib (only for the current session).
+- `scicm.tools.stitch(cmapinlist,vlims,tpoints,name_newcmap='newcmap')`: A generalised version of `scicm.tools.merge`, where `vlims` contains the `[vmin,vmax]` pairs to crop from each input colour map, and `tpoints` defining where the transition from each crop is located on the output colour map. If given a name through `name_newcmap` it will register the colour map with matplotlib (only for the current session).
 
-Here is an example application of **scicm** colour maps:
+### Examples
+
+#### Colour map use examples:
 
 ```python
 #Importing libraries
@@ -55,49 +59,83 @@ x=np.concatenate([rng.normal(-1,0.5,60000),rng.normal(1,0.8,40000)],axis=0)
 y=x+np.cos(x/3)*rng.normal(0,1,100000)
 
 # Plotting
-fig, axes = plt.subplots(nrows=2,ncols=2,figsize=(12,8),gridspec_kw=dict(wspace=0.0,hspace=0.0))
+fig,axes=plt.subplots(nrows=2,ncols=2,figsize=(12,8),gridspec_kw=dict(wspace=0.0,hspace=0.0))
 
-axes[0,0].hexbin(x,y,lw=0,mincnt=1, cmap='scicm.Cyan') # Using the registered names with matplotlib
-axes[0,1].hexbin(x,y,lw=0,mincnt=1, cmap='scicm.C2G_r') # Reversing the colour map
-axes[1,0].hexbin(x,y,lw=0,mincnt=1, cmap=scicm.cm.PkO_r) # Using the colour map objects
-axes[1,1].hexbin(x,y,lw=0,mincnt=1, cmap=scicm.cm.Edges)
+axes[0,0].hexbin(x,y,lw=0,mincnt=1,cmap='scicm.Cyan') # Using the registered names with matplotlib
+axes[0,1].hexbin(x,y,lw=0,mincnt=1,cmap='scicm.C2G_r') # Reversing the colour map
+axes[1,0].hexbin(x,y,lw=0,mincnt=1,cmap=scicm.cm.PkO_r) # Using the colour map objects
+axes[1,1].hexbin(x,y,lw=0,mincnt=1,cmap=scicm.cm.Edges)
 
-for ax, txt in zip(axes.flatten(),['Cyan','C2G_r','PkO_r','Edges']):
-    ax.text(-3.3,4.6,txt,fontsize=20)
+for ax,txt in zip(axes.flatten(),['Cyan','C2G_r','PkO_r','Edges']):
+    ax.text(-3.1,4.6,txt,fontsize=20)
     ax.set_xticks([])
     ax.set_yticks([])
 
 plt.show()
 ```
+![example](/examples/README_ex1.png)
 
-This is the resulting image:
-![example](/examples/README_ex.png)
-
-Here is an example of the colour map manipulation tools inclided in **scicm**:
+#### Tools use examples:
 
 ```python
-# Colour map manipulation
+# Generating random image
+x=np.concatenate([rng.uniform(0,3,60000),rng.normal(0.6,0.15,20000),rng.normal(2.2,0.15,12000),rng.normal(1.8,0.15,8000)],axis=0)
+y=np.concatenate([rng.uniform(0,1,60000),rng.normal(0.4,0.15,20000),rng.normal(0.7,0.15,12000),rng.normal(0.2,0.15,8000)],axis=0)
+z=np.ones(len(x))
 
-shortBkR=scicm.tools.crop('scicm.BkR',vmin=0.3,vmax=1.0)
-BkP=scicm.tools.merge(['scicm.BkR','scicm.OkP'],[0.5])
-asymmetricBkR=scicm.tools.stitch(['scicm.BkR','scicm.BkR'],np.array([[0.0,0.5],[0.5,1.0]]),[0.2])
+def overdensity(data):
+    average_num=1e5/(120*40)
+    value=(np.sum(data)-average_num)/average_num
+    return(value)
 
-fig, axes = plt.subplots(nrows=2,ncols=2,figsize=(12,8),gridspec_kw=dict(wspace=0.0,hspace=0.0))
+im=stats.binned_statistic_2d(x,y,z,bins=[np.linspace(0,3,121),np.linspace(0,1,41)],statistic=overdensity)
 
-axes[0,0].hexbin(x,y,lw=0,mincnt=1, cmap='scicm.BkR') # Using the registered names with matplotlib
-axes[0,1].hexbin(x,y,lw=0,mincnt=1, cmap=shortBkR) # Reversing the colour map
-axes[1,0].hexbin(x,y,lw=0,mincnt=1, cmap=BkP) # Using the colour map objects
-axes[1,1].hexbin(x,y,lw=0,mincnt=1, cmap=asymmetricBkR)
+# Colour map cropping
+shortBkR=scicm.tools.crop('scicm.BkR',vmin=0.5*(1-(1-np.min(im[0]))/(np.max(im[0])-1)),vmax=1.0)
 
-for ax, txt in zip(axes.flatten(),['CyaBkRn','shortBkR','BkP','asymmetricBkR']):
-    ax.text(-3.3,4.6,txt,fontsize=20)
+fig,axes=plt.subplots(nrows=2,ncols=1,figsize=(12,8),gridspec_kw=dict(wspace=0.0,hspace=0.0),facecolor='w')
+h1=axes[0].hist2d(x,y,bins=[np.linspace(0,3,121),np.linspace(0,1,41)],cmap='scicm.Stone_r')
+h2=axes[1].pcolormesh(im[1],im[2],im[0].T,lw=0,cmap=shortBkR)
+
+for ax in axes.flatten():
     ax.set_xticks([])
     ax.set_yticks([])
+    ax.set_xlim([0,3])
+    ax.set_ylim([0,1])
 
+cbar0=fig.colorbar(h1[3],ax=axes[0])
+cbar0.set_label('number counts')
+cbar1=fig.colorbar(h2,ax=axes[1])
+cbar1.set_label('overdensity')
+
+plt.tight_layout()
 plt.show()
 ```
-
-This is the resulting image:
 ![example2](/examples/README_ex2.png)
+```python
+# Colour map merging and stitching
+Edges_P2M=scicm.tools.merge(['scicm.P2M','scicm.Stone','scicm.P2M'],[0.25,0.75],'custom.Edges_P2M')
+G2Y2O=scicm.tools.stitch(['scicm.G2Y','scicm.O2Y_r'],np.array([[0,1],[0,1]]),[0.5],'custom.G2Y2O')
+
+fig,axes=plt.subplots(nrows=2,ncols=1,figsize=(12,8),gridspec_kw=dict(wspace=0.0,hspace=0.0),facecolor='w')
+h1=axes[0].hist2d(x,y,bins=[np.linspace(0,3,121),np.linspace(0,1,41)],cmap='custom.Edges_P2M')
+h2=axes[1].hist2d(x,y,bins=[np.linspace(0,3,121),np.linspace(0,1,41)],cmap='custom.G2Y2O')
+
+for ax in axes.flatten():
+    ax.set_xticks([])
+    ax.set_yticks([])
+    ax.set_xlim([0,3])
+    ax.set_ylim([0,1])
+
+cbar0=fig.colorbar(h1[3],ax=axes[0])
+cbar0.set_label('')
+cbar1=fig.colorbar(h2[3],ax=axes[1])
+cbar1.set_label('')
+
+plt.tight_layout()
+plt.savefig(f'README_ex3.png',dpi=200)
+plt.show()
+```
+![example3](/examples/README_ex3.png)
 
 Current version: 0.5.0
