@@ -98,6 +98,6 @@ plt.show()
 ```
 
 This is the resulting image:
-![example](/examples/README_ex2.png)
+![example2](/examples/README_ex2.png)
 
 Current version: 0.5.0
