@@ -86,15 +86,15 @@ z=np.concatenate([rng.uniform(-2,0,60000),rng.uniform(0,5,40000)],axis=0)
 # Colour map cropping
 shortBkR=scicm.tools.crop('scicm.BkR',vmin=0.3,vmax=1.0)
 
-fig,axes=plt.subplots(nrows=2,ncols=1,figsize=(12,8),gridspec_kw=dict(wspace=0.0,hspace=0.0),facecolor='w')
+fig,axes=plt.subplots(nrows=1,ncols=2,figsize=(12,4),gridspec_kw=dict(wspace=0.0,hspace=0.0),facecolor='w')
 h1=axes[0].hexbin(x,y,C=z,lw=0,cmap='scicm.BkR')
 h2=axes[1].hexbin(x,y,C=z,lw=0,cmap=shortBkR)
 
 for ax in axes.flatten():
     ax.set_xticks([])
     ax.set_yticks([])
-    ax.set_xlim([-3.5,4.5])
-    ax.set_ylim([-5.5,5.5])
+    ax.set_xlim([-2.8,4])
+    ax.set_ylim([-4.8,4.8])
 
 cbar0=fig.colorbar(h1,ax=axes[0])
 cbar0.set_label('mean value')
@@ -110,7 +110,7 @@ plt.show()
 Edges_P2M=scicm.tools.merge(['scicm.P2M','scicm.Stone','scicm.P2M'],[0.25,0.75],'custom.Edges_P2M')
 C2B2P=scicm.tools.stitch(['scicm.B2C_r','scicm.B2P'],np.array([[0,1],[0,1]]),[0.5],'custom.C2B2P')
 
-fig,axes=plt.subplots(nrows=2,ncols=1,figsize=(12,8),gridspec_kw=dict(wspace=0.0,hspace=0.1),facecolor='w')
+fig,axes=plt.subplots(nrows=1,ncols=2,figsize=(12,4),gridspec_kw=dict(wspace=0.0,hspace=0.0),facecolor='w')
 h1=axes[0].hexbin(x,y,cmap='custom.Edges_P2M')
 h2=axes[1].hexbin(x,y,cmap='custom.C2B2P')
 
@@ -120,9 +120,10 @@ for ax in axes.flatten():
     ax.set_xlim([-2.8,4])
     ax.set_ylim([-4.8,4.8])
 
-cbar0=fig.colorbar(h1,ax=axes[0])
-cbar1=fig.colorbar(h2,ax=axes[1])
+#cbar0=fig.colorbar(h1,ax=axes[0])
+#cbar1=fig.colorbar(h2,ax=axes[1])
 
+plt.tight_layout()
 plt.show()
 ```
 ![example3](/examples/README_ex3.png)
