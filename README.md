@@ -61,15 +61,17 @@ y=x+np.cos(x/3)*rng.normal(0,1,100000)
 # Plotting
 fig,axes=plt.subplots(nrows=2,ncols=2,figsize=(12,8),gridspec_kw=dict(wspace=0.0,hspace=0.0))
 
-axes[0,0].hexbin(x,y,lw=0,mincnt=1,cmap='scicm.Cyan') # Using the registered names with matplotlib
-axes[0,1].hexbin(x,y,lw=0,mincnt=1,cmap='scicm.C2G_r') # Reversing the colour map
-axes[1,0].hexbin(x,y,lw=0,mincnt=1,cmap=scicm.cm.PkO_r) # Using the colour map objects
-axes[1,1].hexbin(x,y,lw=0,mincnt=1,cmap=scicm.cm.Edges)
+axes[0,0].hexbin(x,y,lw=0,cmap='scicm.Cyan') # Using the registered names with matplotlib
+axes[0,1].hexbin(x,y,lw=0,cmap='scicm.C2G_r') # Reversing the colour map
+axes[1,0].hexbin(x,y,lw=0,cmap=scicm.cm.PkO_r) # Using the colour map objects
+axes[1,1].hexbin(x,y,lw=0,cmap=scicm.cm.Edges)
 
 for ax,txt in zip(axes.flatten(),['Cyan','C2G_r','PkO_r','Edges']):
-    ax.text(-3.1,4.6,txt,fontsize=20)
+    ax.text(-2.6,3.8,txt,fontsize=20,backgroundcolor='w')
     ax.set_xticks([])
     ax.set_yticks([])
+    ax.set_xlim([-2.8,4])
+    ax.set_ylim([-4.8,4.8])
 
 plt.show()
 ```
@@ -79,36 +81,25 @@ plt.show()
 
 ```python
 # Generating random image
-x=np.concatenate([rng.uniform(0,3,60000),rng.normal(0.6,0.15,20000),
-                  rng.normal(2.2,0.15,12000),rng.normal(1.8,0.15,8000)],axis=0)
-y=np.concatenate([rng.uniform(0,1,60000),rng.normal(0.4,0.15,20000),
-                  rng.normal(0.7,0.15,12000),rng.normal(0.2,0.15,8000)],axis=0)
-z=np.ones(len(x))
-
-def overdensity(data):
-    average_num=1e5/(120*40)
-    value=(np.sum(data)-average_num)/average_num
-    return(value)
-
-im=stats.binned_statistic_2d(x,y,z,bins=[np.linspace(0,3,121),np.linspace(0,1,41)],statistic=overdensity)
+z=np.concatenate([rng.uniform(-2,0,60000),rng.uniform(0,5,40000)],axis=0)
 
 # Colour map cropping
-shortBkR=scicm.tools.crop('scicm.BkR',vmin=0.5*(1-(1-np.min(im[0]))/(np.max(im[0])-1)),vmax=1.0)
+shortBkR=scicm.tools.crop('scicm.BkR',vmin=0.3,vmax=1.0)
 
 fig,axes=plt.subplots(nrows=2,ncols=1,figsize=(12,8),gridspec_kw=dict(wspace=0.0,hspace=0.0),facecolor='w')
-h1=axes[0].hist2d(x,y,bins=[np.linspace(0,3,121),np.linspace(0,1,41)],cmap='scicm.Stone_r')
-h2=axes[1].pcolormesh(im[1],im[2],im[0].T,lw=0,cmap=shortBkR)
+h1=axes[0].hexbin(x,y,C=z,lw=0,cmap='scicm.BkR')
+h2=axes[1].hexbin(x,y,C=z,lw=0,cmap=shortBkR)
 
 for ax in axes.flatten():
     ax.set_xticks([])
     ax.set_yticks([])
-    ax.set_xlim([0,3])
-    ax.set_ylim([0,1])
+    ax.set_xlim([-3.5,4.5])
+    ax.set_ylim([-5.5,5.5])
 
-cbar0=fig.colorbar(h1[3],ax=axes[0])
-cbar0.set_label('number counts')
+cbar0=fig.colorbar(h1,ax=axes[0])
+cbar0.set_label('mean value')
 cbar1=fig.colorbar(h2,ax=axes[1])
-cbar1.set_label('overdensity')
+cbar1.set_label('mean value')
 
 plt.tight_layout()
 plt.show()
@@ -117,25 +108,21 @@ plt.show()
 ```python
 # Colour map merging and stitching
 Edges_P2M=scicm.tools.merge(['scicm.P2M','scicm.Stone','scicm.P2M'],[0.25,0.75],'custom.Edges_P2M')
-G2Y2O=scicm.tools.stitch(['scicm.G2Y','scicm.O2Y_r'],np.array([[0,1],[0,1]]),[0.5],'custom.G2Y2O')
+C2B2P=scicm.tools.stitch(['scicm.B2C_r','scicm.B2P'],np.array([[0,1],[0,1]]),[0.5],'custom.C2B2P')
 
-fig,axes=plt.subplots(nrows=2,ncols=1,figsize=(12,8),gridspec_kw=dict(wspace=0.0,hspace=0.0),facecolor='w')
-h1=axes[0].hist2d(x,y,bins=[np.linspace(0,3,121),np.linspace(0,1,41)],cmap='custom.Edges_P2M')
-h2=axes[1].hist2d(x,y,bins=[np.linspace(0,3,121),np.linspace(0,1,41)],cmap='custom.G2Y2O')
+fig,axes=plt.subplots(nrows=2,ncols=1,figsize=(12,8),gridspec_kw=dict(wspace=0.0,hspace=0.1),facecolor='w')
+h1=axes[0].hexbin(x,y,cmap='custom.Edges_P2M')
+h2=axes[1].hexbin(x,y,cmap='custom.C2B2P')
 
 for ax in axes.flatten():
     ax.set_xticks([])
     ax.set_yticks([])
-    ax.set_xlim([0,3])
-    ax.set_ylim([0,1])
+    ax.set_xlim([-2.8,4])
+    ax.set_ylim([-4.8,4.8])
 
-cbar0=fig.colorbar(h1[3],ax=axes[0])
-cbar0.set_label('')
-cbar1=fig.colorbar(h2[3],ax=axes[1])
-cbar1.set_label('')
+cbar0=fig.colorbar(h1,ax=axes[0])
+cbar1=fig.colorbar(h2,ax=axes[1])
 
-plt.tight_layout()
-plt.savefig(f'README_ex3.png',dpi=200)
 plt.show()
 ```
 ![example3](/examples/README_ex3.png)
