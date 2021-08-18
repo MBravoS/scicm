@@ -52,13 +52,18 @@ All tools are part of the `scicm.tools` submodule. These tools are:
 import scicm
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.colors as col
 
 # Generating random data
 rng=np.random.default_rng()
-x=np.concatenate([rng.normal(-1,0.5,60000),rng.normal(1,0.8,40000)],axis=0)
-y=x+np.cos(x/3)*rng.normal(0,1,100000)
+x=np.concatenate([rng.normal(0,0.5,100000),rng.normal(1,0.5,100000)])
+y=np.concatenate([rng.normal(0,0.5,60000),rng.normal(1,0.5,60000),rng.normal(-1,0.5,80000)])
+z=np.concatenate([rng.uniform(0,0.2,60000),rng.uniform(0.2,0.5,60000),rng.uniform(0.5,1,80000)])
 
 # Plotting
+faint_white=np.array(col.to_rgba('white'))
+faint_white[-1]=0.8
+
 fig,axes=plt.subplots(nrows=2,ncols=2,figsize=(12,8),gridspec_kw=dict(wspace=0.0,hspace=0.0))
 
 axes[0,0].hexbin(x,y,lw=0,cmap='scicm.Cyan') # Using the registered names with matplotlib
@@ -67,12 +72,13 @@ axes[1,0].hexbin(x,y,lw=0,cmap=scicm.cm.PkO_r) # Using the colour map objects
 axes[1,1].hexbin(x,y,lw=0,cmap=scicm.cm.Edges)
 
 for ax,txt in zip(axes.flatten(),['Cyan','C2G_r','PkO_r','Edges']):
-    ax.text(-2.6,3.8,txt,fontsize=20,backgroundcolor='w')
+    ax.text(-1.8,2.2,txt,fontsize=20,backgroundcolor=faint_white)
     ax.set_xticks([])
     ax.set_yticks([])
-    ax.set_xlim([-2.8,4])
-    ax.set_ylim([-4.8,4.8])
+    ax.set_xlim([-2,3])
+    ax.set_ylim([-3,3])
 
+plt.tight_layout()
 plt.show()
 ```
 ![example](/examples/README_ex1.png)
@@ -80,21 +86,19 @@ plt.show()
 #### Tools use examples:
 
 ```python
-# Generating random image
-z=np.concatenate([rng.uniform(-2,0,60000),rng.uniform(0,5,40000)],axis=0)
-
 # Colour map cropping
-shortBkR=scicm.tools.crop('scicm.BkR',vmin=0.3,vmax=1.0)
+cropped_Bkr=scicm.tools.crop('scicm.BkR',vmin=0.2,vmax=1.0)
 
 fig,axes=plt.subplots(nrows=1,ncols=2,figsize=(12,4),gridspec_kw=dict(wspace=0.0,hspace=0.0),facecolor='w')
 h1=axes[0].hexbin(x,y,C=z,lw=0,cmap='scicm.BkR')
-h2=axes[1].hexbin(x,y,C=z,lw=0,cmap=shortBkR)
+h2=axes[1].hexbin(x,y,C=z,lw=0,cmap=cropped_Bkr)
 
-for ax in axes.flatten():
+for ax,txt in zip(axes.flatten(),['scicm.BkR','cropped_Bkr']):
+    ax.text(-1.8,2.2,txt,fontsize=20,backgroundcolor=faint_white)
     ax.set_xticks([])
     ax.set_yticks([])
-    ax.set_xlim([-2.8,4])
-    ax.set_ylim([-4.8,4.8])
+    ax.set_xlim([-2,3])
+    ax.set_ylim([-3,3])
 
 cbar0=fig.colorbar(h1,ax=axes[0])
 cbar0.set_label('mean value')
@@ -107,21 +111,24 @@ plt.show()
 ![example2](/examples/README_ex2.png)
 ```python
 # Colour map merging and stitching
-Edges_P2M=scicm.tools.merge(['scicm.P2M','scicm.Stone','scicm.P2M'],[0.25,0.75],'custom.Edges_P2M')
+Edges_M2R=scicm.tools.merge(['scicm.Stone','scicm.M2R','scicm.Stone'],[0.2,0.5],'custom.Edges_M2R')
 C2B2P=scicm.tools.stitch(['scicm.B2C_r','scicm.B2P'],np.array([[0,1],[0,1]]),[0.5],'custom.C2B2P')
 
 fig,axes=plt.subplots(nrows=1,ncols=2,figsize=(12,4),gridspec_kw=dict(wspace=0.0,hspace=0.0),facecolor='w')
-h1=axes[0].hexbin(x,y,cmap='custom.Edges_P2M')
-h2=axes[1].hexbin(x,y,cmap='custom.C2B2P')
+h1=axes[0].hexbin(x,y,C=z,cmap='custom.Edges_M2R')
+h2=axes[1].hexbin(x,y,C=z,cmap='custom.C2B2P')
 
-for ax in axes.flatten():
+for ax,txt in zip(axes.flatten(),['custom.Edges_M2R','custom.C2B2P']):
+    ax.text(-1.8,2.2,txt,fontsize=20,backgroundcolor=faint_white)
     ax.set_xticks([])
     ax.set_yticks([])
-    ax.set_xlim([-2.8,4])
-    ax.set_ylim([-4.8,4.8])
+    ax.set_xlim([-2,3])
+    ax.set_ylim([-3,3])
 
-#cbar0=fig.colorbar(h1,ax=axes[0])
-#cbar1=fig.colorbar(h2,ax=axes[1])
+cbar0=fig.colorbar(h1,ax=axes[0])
+cbar0.set_label('mean value')
+cbar1=fig.colorbar(h2,ax=axes[1])
+cbar1.set_label('mean value')
 
 plt.tight_layout()
 plt.show()

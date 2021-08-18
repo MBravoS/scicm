@@ -1,5 +1,5 @@
 0.5.0 (15/07/2021):
--Added new cmap tools. Ran the full package through pylint and acted accordingly.
+-Added new cmap tools. Ran the full package through pylint and acted accordingly. Hid CwO and PwO until further notice.
 
 0.4.0 (15/07/2021):
 -Added additional diverging colourmaps: BwG, CwO, PwO, YkB
