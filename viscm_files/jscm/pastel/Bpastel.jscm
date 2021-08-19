@@ -1,0 +1,32 @@
+{
+    "content-type": "application/vnd.matplotlib.colormap-v1+json",
+    "name": "Bpastel",
+    "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+    "usage-hints": [
+        "red-green-colorblind-safe",
+        "greyscale-safe",
+        "sequential"
+    ],
+    "colorspace": "sRGB",
+    "domain": "continuous",
+    "colors": "4c67954c68964d68964d68964e69964e69974f6a97506a97506b98516b98516c98526c99526d99536d99536e9a546e9a556f9a556f9b56709b56709b57709c57719c58719c59729c59729d5a739d5a739d5b749e5b749e5c759e5c759f5d769f5e769f5e77a05f77a05f78a06078a16079a16179a1617aa2627aa2637aa2637ba3647ba3647ca3657ca4657da4667da4667ea5677ea5687fa5687fa66980a66980a66a81a76a81a76b82a86c82a86c83a86d83a96d84a96e84a96e85aa6f85aa6f86aa7086ab7187ab7187ab7288ac7288ac7389ac7389ad748aad758aad758bae768bae768caf778caf778daf788db0798eb0798eb07a8fb17a8fb17b90b17b90b27c91b27d91b37d92b37e92b37e93b47f93b47f94b48094b58195b58195b68296b68296b68397b78397b78498b78598b88599b88699b9869ab9879ab9889bba889bba899cba899cbb8a9dbb8a9dbc8b9ebc8c9ebc8c9fbd8d9fbd8da0be8ea0be8fa1be8fa1bf90a2bf90a2bf91a3c092a3c092a4c193a4c193a5c194a5c295a6c295a6c396a7c396a8c397a8c498a9c498a9c599aac599aac59aabc69babc69bacc79cacc79cadc79dadc89eaec89eaec99fafc99fb0caa0b0caa1b1caa1b1cba2b2cba2b2cca3b3cca4b3cca4b4cda5b4cda5b5cea6b5cea7b6cfa7b7cfa8b7cfa9b8d0a9b8d0aab9d1aab9d1abbad2acbad2acbbd2adbcd3aebcd3aebdd4afbdd4afbed5b0bed5b1bfd6b1bfd6b2c0d6b3c1d7b3c1d7b4c2d8b4c2d8b5c3d9b6c3d9b6c4dab7c4dab8c5dab8c6dbb9c6dbbac7dcbac7dcbbc8ddbbc8ddbcc9debdcadebdcadfbecbdfbfcbdfbfcce0c0cde0c1cde1c1cee1c2cee2c3cfe2c3cfe3c4d0e3c5d1e4c5d1e4c6d2e5c7d2e5c7d3e6c8d4e6c8d4e6c9d5e7cad5e7cad6e8cbd7e8ccd7e9ccd8e9cdd8eaced9eacedaebcfdaebd0dbecd0dbecd1dcedd2ddedd3ddeed3deeed4deefd5dfefd5e0f0d6e0f0d7e1f1d7e1f1d8e2f2d9e3f2d9e3f3dae4f3dbe5f4dbe5f4dce6f5dde6f5dde7f6dee8f6dfe8f7e0e9f7e0eaf8e1eaf8e2ebf9e2ebfae3ecfae4edfbe4edfbe5eefce6effce7effd",
+    "extensions": {
+        "https://matplotlib.org/viscm": {
+            "min_Jp": 45,
+            "max_Jp": 95,
+            "xp": [
+                -5.594582185491262,
+                -3.4300800209891094
+            ],
+            "yp": [
+                -19.841269841269835,
+                -7.720057720057717
+            ],
+            "fixed": -1,
+            "filter_k": 100,
+            "cmtype": "linear",
+            "uniform_colorspace": "CAM02-UCS",
+            "spline_method": "CatmulClark"
+        }
+    }
+}
