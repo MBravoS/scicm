@@ -1,6 +1,6 @@
 # scicm: Science Colour Maps
 
-[![Github release](https://img.shields.io/github/release/MBravoS/scicm.svg?label=tag&colorB=11ccbb)](https://github.com/holoviz/scicm/releases) [![PyPI version](https://img.shields.io/pypi/v/scicm.svg?colorB=cc77dd)](https://pypi.python.org/pypi/scicm)
+[![Github release](https://img.shields.io/github/release/MBravoS/scicm.svg?label=tag&colorB=54ebff)](https://github.com/holoviz/scicm/releases) [![PyPI version](https://img.shields.io/pypi/v/scicm.svg?colorB=ff0080)](https://pypi.python.org/pypi/scicm)
 
 **scicm** is a small package containing several colour maps, aimed at filling gaps in the availability of good (i.e. perceptually linear) in both [matplotlib](https://matplotlib.org/stable/tutorials/colors/colormaps.html) and in other available packages (like [cmocean](https://github.com/matplotlib/cmocean) and [CMasher](https://github.com/1313e/CMasher)). All colour maps in this package have been created using [viscm](https://github.com/matplotlib/viscm). The full viscm visualisations are available in the [viscm_files/visualisation_samples](https://github.com/MBravoS/scicm/tree/master/viscm_files/visualisation_samples) folder of this repository. Also included are utilities for colour map manipulation.
 
