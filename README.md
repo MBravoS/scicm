@@ -137,5 +137,3 @@ plt.tight_layout()
 plt.show()
 ```
 ![example3](/examples/README_ex3.png)
-
-Current version: 0.5.0
