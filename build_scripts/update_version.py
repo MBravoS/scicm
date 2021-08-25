@@ -3,15 +3,8 @@ Author: Robin Cook, Matias Bravo
 Date: 09/08/19
 """
 
-#from sys import argv
-
-#version_update=int(argv[1])
-#changelog_message=argv[2]
-
 changelog = "../changelog.txt"
-readme = "../README.md"
 setup = "../setup.cfg"
-#conf = "../docs/conf.py"
 
 import os
 import re
@@ -29,28 +22,22 @@ def prepend(filename, line):
 def get_version():
 	# Check the versions in all of these files
 	versions = []
-	for filename in [changelog,readme,setup]:#,conf]:
+	for filename in [changelog,setup]:
 		with open(filename, 'r') as file:
 			if ('changelog' in filename):
 				versions.append(file.readline().split(' (')[0])
 			else:
 				for line in file.readlines():
-					if ('README' in filename and line.startswith("Current version")):
-						versions.append(line.split(': ')[1].replace('\n',''))
-						break
-					elif ('setup' in filename and line.strip().startswith("version =")):
+					if ('setup' in filename and line.strip().startswith("version =")):
 						versions.append(line.split(" = ")[1].replace('\n',''))
 						break
-					#elif ('conf' in filename and line.startswith("release =")):
-					#	versions.append(line.split("'")[1])
-					#	break
 				else: # No line matching pattern found in file
 					versions.append(None)
 					print(f"\nWARNING: Could not find version in file \"{filename}\"!\n")
 	
 	if ( len(set(versions)) > 1 ): # Make sure all versions are equal
 		print("\nWARNING: Not all versions match across files. Got versions:")
-		for version, filename in zip(versions, [changelog,readme,setup]):#,conf]):
+		for version, filename in zip(versions, [changelog,setup]):
 			print(f"{filename:<14}: {version}")
 		
 		choice = input("\nAre you sure you want to proceed (y/n)? ")
@@ -64,7 +51,7 @@ def get_version():
 
 def set_versions(version, message):
 	# Loop through all files
-	for filename in [changelog,readme,setup]:#,conf]:
+	for filename in [changelog,setup]:
 		if ('changelog' in filename):
 			string = (f"{version} ({date.today().strftime('%d/%m/%Y')}):\n{message}\n")
 			prepend(filename, string)
@@ -73,15 +60,9 @@ def set_versions(version, message):
 				lines = file.readlines()
 			
 			for ii, line in enumerate(lines):
-				if ('README' in filename and line.startswith("Current version")):
-					lines[ii] = f"Current version: {version}\n"
-					break
-				elif ('setup' in filename and line.strip().startswith("version = ")):
+				if ('setup' in filename and line.strip().startswith("version = ")):
 					lines[ii] = f"version = {version}\n"
 					break
-				#elif ('conf' in filename and line.startswith("release =")):
-				#	lines[ii] = f"release = '{version}'\n"
-				#	break
 			else: # No line matching pattern found in file
 				print(f"\nWARNING: Could not find version in file \"{filename}\"!\n")
 			

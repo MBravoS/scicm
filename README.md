@@ -69,12 +69,12 @@ faint_white[-1]=0.8
 
 fig,axes=plt.subplots(nrows=2,ncols=2,figsize=(12,8),gridspec_kw=dict(wspace=0.0,hspace=0.0))
 
-axes[0,0].hexbin(x,y,lw=0,cmap='scicm.Cyan') # Using the registered names with matplotlib
-axes[0,1].hexbin(x,y,lw=0,cmap='scicm.C2G_r') # Reversing the colour map
+axes[0,0].hexbin(x,y,lw=0,cmap='scicm.Teal') # Using the registered names with matplotlib
+axes[0,1].hexbin(x,y,lw=0,cmap='scicm.T2G_r') # Reversing the colour map
 axes[1,0].hexbin(x,y,lw=0,cmap=scicm.cm.PkO_r) # Using the colour map objects
 axes[1,1].hexbin(x,y,lw=0,cmap=scicm.cm.Edges)
 
-for ax,txt in zip(axes.flatten(),['Cyan','C2G_r','PkO_r','Edges']):
+for ax,txt in zip(axes.flatten(),['Teal','T2G_r','PkO_r','Edges']):
     ax.text(-1.8,2.2,txt,fontsize=20,backgroundcolor=faint_white)
     ax.set_xticks([])
     ax.set_yticks([])
@@ -115,13 +115,13 @@ plt.show()
 ```python
 # Colour map merging and stitching
 Edges_M2R=scicm.tools.merge(['scicm.Stone','scicm.M2R','scicm.Stone'],[0.2,0.5],'custom.Edges_M2R')
-C2B2P=scicm.tools.stitch(['scicm.B2C_r','scicm.B2P'],np.array([[0,1],[0,1]]),[0.5],'custom.C2B2P')
+T2B2P=scicm.tools.stitch(['scicm.B2T_r','scicm.B2P'],np.array([[0,1],[0,1]]),[0.5],'custom.T2B2P')
 
 fig,axes=plt.subplots(nrows=1,ncols=2,figsize=(12,4),gridspec_kw=dict(wspace=0.0,hspace=0.0),facecolor='w')
 h1=axes[0].hexbin(x,y,C=z,cmap='custom.Edges_M2R')
-h2=axes[1].hexbin(x,y,C=z,cmap='custom.C2B2P')
+h2=axes[1].hexbin(x,y,C=z,cmap='custom.T2B2P')
 
-for ax,txt in zip(axes.flatten(),['custom.Edges_M2R','custom.C2B2P']):
+for ax,txt in zip(axes.flatten(),['custom.Edges_M2R','custom.T2B2P']):
     ax.text(-1.8,2.2,txt,fontsize=20,backgroundcolor=faint_white)
     ax.set_xticks([])
     ax.set_yticks([])

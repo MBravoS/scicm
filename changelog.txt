@@ -1,3 +1,8 @@
+0.6.0 (25/08/2021):
+-Added new teal colour map.
+-Updated names of previous "cyan" colour maps that are closer to teal.
+-Standarised the lightness of all monochromatic colour maps, so they play nicer with merge.
+
 0.5.0 (15/07/2021):
 -Added new cmap tools. Ran the full package through pylint and acted accordingly. Hid CwO and PwO until further notice.
 

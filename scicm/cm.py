@@ -7,17 +7,17 @@ from matplotlib import cm
 from matplotlib.colors import LinearSegmentedColormap as LSC
 
 # List of all colour maps in scicm
-cmaps=['B2C','B2P','BkG','BkR','Blue','BwG','BwR','C2G',
-       'CkO','Cyan','Day','Edges','G2Y','Garnet','GkP','Green',
-       'GwP','M2R','Magenta','Night','O2Y','Orange',
-       'P2M','PkO','Purple','Quartile','R2O','Red',
-       'Ripe','Stone','Tropical','Yellow','YkB','YkM']
+cmaps=['B2P','B2T','BkG','BkR','Blue','BwG','BwR','Cyan',
+       'Day','Edges','G2Y','Garnet','GkP','Green','GwP',
+       'M2R','Magenta','Night','O2Y','Orange','P2M','PkO',
+       'Purple','Quartile','R2O','Red','Ripe','Stone','T2G',
+       'Teal','TkO','Tropical','Yellow','YkB','YkM']
 
 # List of diverging colour maps, this separate list is used
 # to generate the mirror name copies (i.e. RwB)
 
-diverging={'BkG':'GkB','BkR':'RkB','BwG':'GwB','BwR':'RwB','CkO':'OkC',
-           'GkP':'PkG','GwP':'PwG','PkO':'OkP','YkM':'MkY','YkB':'BkY'}
+diverging={'BkG':'GkB','BkR':'RkB','BwG':'GwB','BwR':'RwB','GkP':'PkG',
+           'GwP':'PwG','PkO':'OkP','TkO':'OkT','YkM':'MkY','YkB':'BkY'}
 
 # Reading in the colour map data and setting up the cm objects
 cmap_dict={}
