@@ -1,6 +1,6 @@
 {
     "content-type": "application/vnd.matplotlib.colormap-v1+json",
-    "name": "Rpastel",
+    "name": "SoftRed",
     "license": "http://creativecommons.org/publicdomain/zero/1.0/",
     "usage-hints": [
         "red-green-colorblind-safe",
@@ -9,18 +9,18 @@
     ],
     "colorspace": "sRGB",
     "domain": "continuous",
-    "colors": "a53d28a63e28a63e29a73f29a7402aa7402aa8412ba8422ba9422ca9432ca9442daa452daa452eab462eab472fab472fac4830ac4930ad4931ad4a31ad4b32ae4b32ae4c33ae4c33af4d34af4e34b04e35b04f35b05036b15036b15137b25237b25238b25338b35439b35439b3553ab4563ab4563bb5573bb5583cb5583cb6593db65a3db65a3eb75b3eb75c3fb75c3fb85d40b85d40b95e41b95f41b95f42ba6042ba6143ba6143bb6244bb6344bb6345bc6445bc6546bd6546bd6647bd6747be6748be6848be6949bf6949bf6a4abf6a4ac06b4bc06c4bc06c4cc16d4dc16e4dc16e4ec26f4ec2704fc3704fc37150c37250c47251c47351c47452c57452c57553c57653c67654c67754c67755c77856c77956c77957c87a57c87b58c87b58c97c59c97d59c97d5aca7e5aca7f5bca7f5ccb805ccb815dcc815dcc825ecc835ecd835fcd845fcd8560ce8560ce8661ce8762cf8762cf8863cf8963d08964d08a64d08b65d18b65d18c66d18d67d28d67d28e68d28f68d38f69d39069d3916ad4916ad4926bd4936cd5936cd5946dd5956dd6956ed6966ed6976fd79770d79870d79971d89971d89a72d89b72d99b73d99c74d99d74da9d75da9e75da9f76db9f76dba077dba178dca178dca279dca379dda37adda47bdda57bdea57cdea67cdea77ddfa87edfa87edfa97fe0aa7fe0aa80e0ab80e1ac81e1ac82e1ad82e2ae83e2ae83e2af84e3b085e3b185e3b186e4b286e4b387e4b388e5b488e5b589e5b58ae6b68ae6b78be6b88be7b88ce7b98de7ba8de8ba8ee8bb8ee8bc8fe9bc90e9bd90e9be91eabf92eabf92eac093ebc193ebc194ebc295ecc395ecc496ecc497edc597edc698edc799eec799eec89aeec99aefc99befca9cf0cb9cf0cc9df0cc9ef1cd9ef1ce9ff1cfa0f2cfa0f2d0a1f2d1a2f3d1a2f3d2a3f3d3a4f4d4a4f4d4a5f4d5a6f5d6a6f5d7a7f5d7a8f6d8a8f6d9a9f6daaaf7daaaf7dbabf7dcacf8ddacf8ddadf8deaef9dfaef9e0affae0b0fae1b0fae2b1fbe3b2fbe3b2fbe4b3fce5b4fce6b5fce6b5fde7b6fde8b7fde9b7feeab8feeab9feebb9ffecba",
+    "colors": "ba4138bb4238bb4239bb433abc443abc443bbc453bbc463cbd473cbd473dbd483ebe493ebe493fbe4a3fbf4b40bf4c40bf4c41bf4d41c04e42c04e43c04f43c15044c15044c15145c15246c25246c25347c25447c35448c35548c35649c3564ac4574ac4584bc4584bc5594cc55a4cc55a4dc55b4ec65c4ec65c4fc65d4fc75e50c75e51c75f51c76052c86052c86153c86253c86254c96355c96455c96456c96556ca6657ca6658ca6758cb6859cb6859cb695acb6a5bcc6a5bcc6b5ccc6c5ccc6c5dcd6d5ecd6d5ecd6e5fcd6f5fce6f60ce7060ce7161ce7162cf7262cf7363cf7363cf7464d07565d07565d07666d07766d17767d17868d17868d17969d27a6ad27a6ad27b6bd27c6bd37c6cd37d6dd37e6dd37e6ed47f6ed4806fd48070d48170d58171d58271d58372d58373d68473d68574d68575d68675d78776d78776d78877d78978d88978d88a79d88a79d88b7ad98c7bd98c7bd98d7cd98e7dda8e7dda8f7eda907eda907fda9180db9280db9281db9382db9482dc9483dc9583dc9584dc9685dd9785dd9786dd9887dd9987de9988de9a88de9b89de9b8adf9c8adf9d8bdf9d8cdf9e8cdf9f8de09f8ee0a08ee0a08fe0a18fe1a290e1a291e1a391e1a492e2a493e2a593e2a694e2a695e3a795e3a896e3a897e3a997e4aa98e4aa99e4ab99e4ac9ae4ac9ae5ad9be5ad9ce5ae9ce5af9de6af9ee6b09ee6b19fe6b1a0e7b2a0e7b3a1e7b3a2e7b4a2e8b5a3e8b5a4e8b6a4e8b7a5e9b7a6e9b8a6e9b9a7e9b9a8eabaa8eabba9eabbaaeabcaaebbdabebbdacebbeacebbfadecbfaeecc0aeecc1afecc1b0edc2b0edc3b1edc3b2edc4b2eec5b3eec5b4eec6b4eec7b5efc7b6efc8b6efc9b7efc9b8f0cab8f0cbb9f0cbbaf0ccbaf1cdbbf1cdbcf1cebcf1cfbdf2cfbef2d0bef2d1bff2d1c0f3d2c0f3d3c1f3d3c2f3d4c3f4d5c3f4d6c4f4d6c5f4d7c5f5d8c6f5d8c7f5d9c7f6dac8f6dac9f6dbc9f6dccaf7dccbf7ddccf7deccf7decdf8dfcef8e0cef8e1cff8e1d0f9e2d0f9e3d1f9e3d2fae4d3fae5d3fae5d4fae6d5fbe7d5fbe8d6fbe8d7fbe9d8fcead8fcead9",
     "extensions": {
         "https://matplotlib.org/viscm": {
-            "min_Jp": 45,
+            "min_Jp": 50,
             "max_Jp": 95,
             "xp": [
-                23.986947396038317,
-                0.4660238751147858
+                27.16155057064148,
+                2.197625606716528
             ],
             "yp": [
-                16.089466089466086,
-                13.203463203463201
+                14.357864357864358,
+                5.6998556998557035
             ],
             "fixed": -1,
             "filter_k": 100,

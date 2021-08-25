@@ -1,6 +1,6 @@
 {
     "content-type": "application/vnd.matplotlib.colormap-v1+json",
-    "name": "Mpastel",
+    "name": "SoftMagenta",
     "license": "http://creativecommons.org/publicdomain/zero/1.0/",
     "usage-hints": [
         "red-green-colorblind-safe",
@@ -9,18 +9,18 @@
     ],
     "colorspace": "sRGB",
     "domain": "continuous",
-    "colors": "9a42669a43679a44679b44689b45689c46689c46699c47699d486a9d486a9d496b9e4a6b9e4a6c9f4b6c9f4b6c9f4c6da04d6da04d6ea04e6ea14f6fa14f6fa15070a25170a25170a25271a35271a35372a45472a45473a45573a55674a55674a55774a65775a65875a65976a75976a75a77a75b77a85b78a85c78a95c79a95d79a95e79aa5e7aaa5f7aaa607bab607bab617cab617cac627dac637dac637ead647ead657ead657fae667fae6680af6780af6881af6881b06982b06a82b06a83b16b83b16b84b16c84b26d84b26d85b26e85b36f86b36f86b37087b47087b47188b57288b57289b57389b6748ab6748ab6758bb7758bb7768cb7778cb8778db8788db8798db9798eb97a8eb97a8fba7b8fba7c90ba7c90bb7d91bb7e91bc7e92bc7f92bc7f93bd8093bd8194bd8194be8295be8395be8396bf8496bf8497bf8597c08698c08698c08799c18899c1889ac2899ac28a9bc28a9bc38b9cc38b9cc38c9dc48d9dc48d9ec48e9ec58f9fc58f9fc690a0c691a0c691a1c792a1c792a2c793a2c894a3c894a3c895a4c996a4c996a5c997a5ca98a6ca98a6cb99a7cb99a7cb9aa8cc9ba8cc9ba9cc9ca9cd9daacd9daace9eabce9fabce9faccfa0accfa1adcfa1add0a2aed0a3aed0a3afd1a4afd1a4b0d2a5b1d2a6b1d2a6b2d3a7b2d3a8b3d4a8b3d4a9b4d4aab4d5aab5d5abb5d5acb6d6acb6d6adb7d7aeb7d7aeb8d7afb9d8b0b9d8b0bad8b1bad9b2bbd9b2bbdab3bcdab4bcdab4bddbb5bddbb6bedcb6bfdcb7bfdcb8c0ddb8c0ddb9c1debac1debac2debbc2dfbcc3dfbcc3e0bdc4e0bec5e0bec5e1bfc6e1c0c6e2c0c7e2c1c7e2c2c8e3c2c9e3c3c9e4c4cae4c4cae4c5cbe5c6cbe5c7cce6c7cde6c8cde7c9cee7c9cee7cacfe8cbcfe8cbd0e9ccd1e9cdd1e9cdd2eaced2eacfd3ebd0d4ebd0d4ecd1d5ecd2d5ecd2d6edd3d6edd4d7eed4d8eed5d8efd6d9efd7d9f0d7daf0d8dbf0d9dbf1d9dcf1dadcf2dbddf2dbdef3dcdef3dddff4dee0f4dee0f4dfe1f5e0e1f5e0e2f6e1e3f6e2e3f7e3e4f7e3e4f8e4e5f8e5e6f9e6e6f9e6e7f9e7e8fae8e8fae8e9fbe9e9",
+    "colors": "a74c83a74c83a84d84a84e84a84e84a94f85a95085a95085a95186aa5286aa5286aa5387ab5387ab5487ab5588ac5588ac5689ac5689ac5789ad588aad588aad598aae5a8bae5a8bae5b8baf5b8caf5c8caf5d8cb05d8db05e8db05e8eb05f8eb1608eb1608fb1618fb2618fb26290b26390b36390b36491b36491b36592b46692b46692b46793b56793b56893b56994b66994b66a94b66a95b66b95b76c96b76c96b76d96b86d97b86e97b86f97b96f98b97098b97099ba7199ba7199ba729aba739abb739abb749bbb749bbc759cbc769cbc769cbd779dbd779dbd789dbd799ebe799ebe7a9fbe7a9fbf7b9fbf7ca0bf7ca0c07da1c07da1c07ea1c17ea2c17fa2c180a3c180a3c281a3c281a4c282a4c383a4c383a5c384a5c484a6c485a6c486a6c586a7c587a7c587a8c588a8c689a8c689a9c68aa9c78aaac78baac78baac88cabc88dabc88dacc98eacc98eacc98fadca90adca90aeca91aeca91aecb92afcb93afcb93b0cc94b0cc94b1cc95b1cd96b1cd96b2cd97b2ce97b3ce98b3ce99b3cf99b4cf9ab4cf9ab5d09bb5d09cb5d09cb6d19db6d19db7d19eb7d29fb8d29fb8d2a0b8d2a0b9d3a1b9d3a2bad3a2bad4a3bbd4a3bbd4a4bbd5a5bcd5a5bcd5a6bdd6a6bdd6a7bed6a8bed7a8bed7a9bfd7a9bfd8aac0d8abc0d8abc1d9acc1d9acc2d9adc2daaec2daaec3daafc3dbafc4dbb0c4dcb1c5dcb1c5dcb2c6ddb3c6ddb3c6ddb4c7deb4c7deb5c8deb6c8dfb6c9dfb7c9dfb7cae0b8cae0b9cae0b9cbe1bacbe1bbcce1bbcce2bccde2bccde2bdcee3becee3becfe4bfcfe4c0d0e4c0d0e5c1d0e5c1d1e5c2d1e6c3d2e6c3d2e6c4d3e7c5d3e7c5d4e8c6d4e8c6d5e8c7d5e9c8d6e9c8d6e9c9d7eacad7eacad8ebcbd8ebcbd9ebccd9eccddaeccddaeccedaedcfdbedcfdbeed0dceed1dceed1ddefd2ddefd2deefd3def0d4dff0d4dff1d5e0f1d6e0f1d6e1f2d7e1f2d8e2f3d8e2f3d9e3f3dae3f4dae4f4dbe4f5dce5f5dce5f5dde6f6dde6f6dee7f7dfe7f7dfe8f7e0e8f8e1e9f8e1eaf9e2eaf9e3ebf9e3ebfae4ecfae5ecfbe5edfbe6edfbe7eefce7eefce8ef",
     "extensions": {
         "https://matplotlib.org/viscm": {
-            "min_Jp": 45,
+            "min_Jp": 50,
             "max_Jp": 95,
             "xp": [
-                24.13124754033845,
-                3.7849271940181097
+                24.708448117539035,
+                5.227928637019559
             ],
             "yp": [
-                -0.9379509379509372,
-                0.9379509379509443
+                -5.988455988455982,
+                -1.0822510822510765
             ],
             "fixed": -1,
             "filter_k": 100,

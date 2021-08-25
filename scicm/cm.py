@@ -10,7 +10,9 @@ from matplotlib.colors import LinearSegmentedColormap as LSC
 cmaps=['B2P','B2T','BkG','BkR','Blue','BwG','BwR','Cyan',
        'Day','Edges','G2Y','Garnet','GkP','Green','GwP',
        'M2R','Magenta','Night','O2Y','Orange','P2M','PkO',
-       'Purple','Quartile','R2O','Red','Ripe','Stone','T2G',
+       'Purple','Quartile','R2O','Red','Ripe','SoftBlue',
+       'SoftGreen','SoftMagenta','SoftOrange','SoftPurple',
+       'SoftRed','SoftTeal','SoftYellow','Stone','T2G',
        'Teal','TkO','Tropical','Yellow','YkB','YkM']
 
 # List of diverging colour maps, this separate list is used
