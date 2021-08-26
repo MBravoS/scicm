@@ -18,17 +18,22 @@ Upon importing scicm, the colour maps are registered with matplotlib, so they ca
 ### Included Colour Maps
 
 #### Monochromatic colour maps
-The first two sets of colour maps are meant as a replacement for the sequential colour maps from matplotlib. All are designed with the same dynamic range in lightness, which means that small value changes are equally distinct. The first set contains the colour maps designed as general-purpose, being not only perceptually linear but also lacking strong hue changes, which could mistakenly lead the eye to certain value ranges. This *near-constant* hue also ensures that they are all colourblind-friendly.
-![cmaps0](/examples/scicm_monochromat.png)
+The first set of colour maps are meant as a replacement for the sequential colour maps from matplotlib. All are designed with the same dynamic range in lightness, which means that small value changes are equally distinct. The first set contains the colour maps designed as general-purpose, being not only perceptually linear but also lacking strong hue changes, which could mistakenly lead the eye to certain value ranges. This *near-constant* hue also ensures that they are all colourblind-friendly.
+![cmaps0](/examples/scicm_monochromatic.png)
 <br><br>
 
-#### Dichromatic colour maps
-The colour maps in the second set contain small and simple hue changes as a function of lightness, intended to transition from one hue to the other roughly halfway in the value range. These colour maps should be used when a greater differentiation between low and high values is desired. Of course, these colour maps are not equally colourblind-friendly, so we recommend checking the viscm visualisations before choosing one.
-![cmaps1](/examples/scicm_dichromat.png)
+#### Soft monochromatic colour maps
+A not uncommon use of colour maps is to display images/data on top of which further lines/markers will be drawn on top (e.g., drawing contours on top of an image), which can make the choice of colour for said lines/markers challenging, particularly if they overlap both light and dark areas of the image. Making the colour map lighter/darker with alpha compositing is a common approach, but this makes the resulting maps non-perceptually linear. For this reason, this set offers ligther and less saturated versions of the monochromatic colour maps. This enables both a linear representation of the underlying data and increased visibility of lines/markers drawn on top. If this is not a concern, we recomend using maps from the monochromatic set, as they have a larger lightness dynamic range.
+![cmaps0](/examples/scicm_soft.png)
+<br><br>
+
+#### Bichromatic colour maps
+The colour maps in this set contain small and simple hue changes compared to the monochromatic set, intended to transition from one hue to the other roughly halfway in the value range. These colour maps should be used when a greater differentiation between low and high values is desired. Not all of these maps are as colourblind-friendly, so we recommend checking the viscm visualisations before choosing one.
+![cmaps1](/examples/scicm_bichromatic.png)
 <br><br>
 
 #### Diverging colour maps
-The third set is composed of diverging colour maps, which are intended to be used only when visualising data that is centered around a critical value. In most cases, the middle point is the darkest, as this clearly distinguishes the middle values from lack of data without the need to set the figure background to a colour other than white. The two colour maps that have a light middle point (*BwR* and *GwP*) add choices for cases where that is not a concern. All these colour maps span the same dynamic range in lightness on each side and across maps and are intended to be colourblind-friendly to a good degree. For ease of use, all these colourmaps are also registered with their inverse names (e.g., *PkG*, which is equivalent to *GkP_r*).
+This set is composed of diverging colour maps, which are intended to be used only when visualising data that is centered around a critical value. In most cases, the middle point is the darkest, as this clearly distinguishes the middle values from lack of data without the need to set the figure background to a colour other than white. The two colour maps that have a light middle point (*BwR* and *GwP*) add choices for cases where that is not a concern. All these colour maps span the same dynamic range in lightness on each side and across maps and are intended to be colourblind-friendly to a good degree. For ease of use, all these colourmaps are also registered with their inverse names (e.g., *PkG*, which is equivalent to *GkP_r*).
 ![cmaps2](/examples/scicm_diverging.png)
 <br><br>
 
@@ -67,14 +72,16 @@ z=np.concatenate([rng.uniform(0,0.2,60000),rng.uniform(0.2,0.5,60000),rng.unifor
 faint_white=np.array(col.to_rgba('white'))
 faint_white[-1]=0.8
 
-fig,axes=plt.subplots(nrows=2,ncols=2,figsize=(12,8),gridspec_kw=dict(wspace=0.0,hspace=0.0))
+fig,axes=plt.subplots(nrows=3,ncols=2,figsize=(12,12),gridspec_kw=dict(wspace=0.0,hspace=0.0))
 
-axes[0,0].hexbin(x,y,lw=0,cmap='scicm.Teal') # Using the registered names with matplotlib
-axes[0,1].hexbin(x,y,lw=0,cmap='scicm.T2G_r') # Reversing the colour map
-axes[1,0].hexbin(x,y,lw=0,cmap=scicm.cm.PkO_r) # Using the colour map objects
-axes[1,1].hexbin(x,y,lw=0,cmap=scicm.cm.Edges)
+axes[0,0].hexbin(x,y,lw=0,cmap='scicm.Teal') # Example of a monochromatic map, using the registered names with matplotlib
+axes[0,1].hexbin(x,y,lw=0,cmap=scicm.cm.SoftTeal) # Example of a soft map, using the colour map objects
+axes[1,0].hexbin(x,y,lw=0,cmap='scicm.M2R_r') # Example of a bichromatic map, reversing the colour map
+axes[1,1].hexbin(x,y,lw=0,cmap='scicm.PkO') # Example of a diverging map
+axes[2,0].hexbin(x,y,lw=0,cmap='scicm.Edges') # Example of a segmented map
+axes[2,1].hexbin(x,y,lw=0,cmap='scicm.Tropical') # Example of a miscellaneous map
 
-for ax,txt in zip(axes.flatten(),['Teal','T2G_r','PkO_r','Edges']):
+for ax,txt in zip(axes.flatten(),['Teal','SoftTeal','MkR_r','PkO','Edges','Tropical']):
     ax.text(-1.8,2.2,txt,fontsize=20,backgroundcolor=faint_white)
     ax.set_xticks([])
     ax.set_yticks([])
