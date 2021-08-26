@@ -1,6 +1,6 @@
 {
     "content-type": "application/vnd.matplotlib.colormap-v1+json",
-    "name": "SoftBlue*",
+    "name": "SoftBlue",
     "license": "http://creativecommons.org/publicdomain/zero/1.0/",
     "usage-hints": [
         "red-green-colorblind-safe",
