@@ -74,12 +74,18 @@ faint_white[-1]=0.8
 
 fig,axes=plt.subplots(nrows=3,ncols=2,figsize=(12,12),gridspec_kw=dict(wspace=0.0,hspace=0.0))
 
-axes[0,0].hexbin(x,y,lw=0,cmap='scicm.Teal') # Example of a monochromatic map, using the registered names with matplotlib
-axes[0,1].hexbin(x,y,lw=0,cmap=scicm.cm.SoftTeal) # Example of a soft map, using the colour map objects
-axes[1,0].hexbin(x,y,lw=0,cmap='scicm.M2R_r') # Example of a bichromatic map, reversing the colour map
-axes[1,1].hexbin(x,y,lw=0,cmap='scicm.PkO') # Example of a diverging map
-axes[2,0].hexbin(x,y,lw=0,cmap='scicm.Edges') # Example of a segmented map
-axes[2,1].hexbin(x,y,lw=0,cmap='scicm.Tropical') # Example of a miscellaneous map
+# Example of a monochromatic map, using the registered names with matplotlib
+axes[0,0].hexbin(x,y,lw=0,cmap='scicm.Teal')
+# Example of a soft map, using the colour map objects
+axes[0,1].hexbin(x,y,lw=0,cmap=scicm.cm.SoftTeal)
+# Example of a bichromatic map, reversing the colour map
+axes[1,0].hexbin(x,y,lw=0,cmap='scicm.M2R_r')
+# Example of a diverging map
+axes[1,1].hexbin(x,y,lw=0,cmap='scicm.PkO')
+# Example of a segmented map
+axes[2,0].hexbin(x,y,lw=0,cmap='scicm.Edges')
+# Example of a miscellaneous map
+axes[2,1].hexbin(x,y,lw=0,cmap='scicm.Tropical')
 
 for ax,txt in zip(axes.flatten(),['Teal','SoftTeal','MkR_r','PkO','Edges','Tropical']):
     ax.text(-1.8,2.2,txt,fontsize=20,backgroundcolor=faint_white)
