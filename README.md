@@ -19,22 +19,22 @@ Upon importing scicm, the colour maps are registered with matplotlib, so they ca
 
 #### Monochromatic colour maps
 The first set of colour maps are meant as a replacement for the sequential colour maps from matplotlib. All are designed with the same dynamic range in lightness, which means that small value changes are equally distinct. The first set contains the colour maps designed as general-purpose, being not only perceptually linear but also lacking strong hue changes, which could mistakenly lead the eye to certain value ranges. This *near-constant* hue also ensures that they are all colourblind-friendly.
-![cmaps0](/examples/scicm_monochromatic.png)
+![](https://github.com/MBravoS/scicm/raw/master/examples/scicm_monochromatic.png)
 <br><br>
 
 #### Soft monochromatic colour maps
 A not uncommon use of colour maps is to display images/data on top of which further lines/markers will be drawn on top (e.g., drawing contours on top of an image), which can make the choice of colour for said lines/markers challenging, particularly if they overlap both light and dark areas of the image. Making the colour map lighter/darker with [alpha compositing](https://en.wikipedia.org/wiki/Alpha_compositing) is a common approach, but this makes the resulting maps non-perceptually linear. For this reason, this set offers ligther and less saturated versions of the monochromatic colour maps. This enables both a linear representation of the underlying data and increased visibility of lines/markers drawn on top. If this is not a concern, we recomend using maps from the monochromatic set, as they have a larger lightness dynamic range.
-![cmaps0](/examples/scicm_soft.png)
+![](https://github.com/MBravoS/scicm/raw/master/examples/scicm_soft.png)
 <br><br>
 
 #### Bichromatic colour maps
 The colour maps in this set contain small and simple hue changes compared to the monochromatic set, intended to transition from one hue to the other roughly halfway in the value range. These colour maps should be used when a greater differentiation between low and high values is desired. Not all of these maps are as colourblind-friendly, so we recommend checking the viscm visualisations before choosing one.
-![cmaps1](/examples/scicm_bichromatic.png)
+![](https://github.com/MBravoS/scicm/raw/master/examples/scicm_bichromatic.png)
 <br><br>
 
 #### Diverging colour maps
 This set is composed of diverging colour maps, which are intended to be used only when visualising data that is centered around a critical value. In most cases, the middle point is the darkest, as this clearly distinguishes the middle values from lack of data without the need to set the figure background to a colour other than white. The two colour maps that have a light middle point (*BwR* and *GwP*) add choices for cases where that is not a concern. All these colour maps span the same dynamic range in lightness on each side and across maps and are intended to be colourblind-friendly to a good degree. For ease of use, all these colourmaps are also registered with their inverse names (e.g., *PkG*, which is equivalent to *GkP_r*).
-![cmaps2](/examples/scicm_diverging.png)
+![](https://github.com/MBravoS/scicm/raw/master/examples/scicm_diverging.png)
 <br><br>
 
 #### Miscellaneous colour maps
@@ -43,7 +43,7 @@ The last set is composed of colour maps with special use cases:
 - *Garnet*, *Ripe* and *Tropical*: Linear colour maps that have been designed for plots where the intention is to highlight broad regions of the data through large variations in hue. For this purpose, they have been designed with less than half of the lightness dynamic range than our other linear maps. Due to these design choices, they are inherently less colourblind-friendly than the rest of the colour maps.
 - *Edges*: A linear colour map inspired by cmocean's Oxy. It uses *Stone* as a base, but with the notable distinction that for \[normalised\] values below 0.2 and above 0.8 it changes colour (to blue and yellow, respectively). This is intended to selectively highlight the extreme values of the data.
 - *Quartile*: An experimental colour map, composed of four linear segments of significantly different hues, though still perfectly linear in greyscale. This colour map is meant as an alternative to filled contours, as it displays information inside the contours that would be otherwise lost.
-![cmaps3](/examples/scicm_miscellaneous.png)
+![](https://github.com/MBravoS/scicm/raw/master/examples/scicm_miscellaneous.png)
 
 ### Included Tools
 All tools are part of the `scicm.tools` submodule. These tools are:
@@ -86,12 +86,12 @@ for ax,txt in zip(axes.flatten(),['Teal','SoftTeal','MkR_r','PkO','Edges','Tropi
     ax.set_xticks([])
     ax.set_yticks([])
     ax.set_xlim([-2,3])
-    ax.set_ylim([-3,3])
+    ax.set_ylim([-2.9,2.9])
 
 plt.tight_layout()
 plt.show()
 ```
-![example](/examples/README_ex1.png)
+![](https://github.com/MBravoS/scicm/raw/master/examples/README_ex1.png)
 
 #### Tools use examples:
 
@@ -108,7 +108,7 @@ for ax,txt in zip(axes.flatten(),['scicm.BkR','cropped_Bkr']):
     ax.set_xticks([])
     ax.set_yticks([])
     ax.set_xlim([-2,3])
-    ax.set_ylim([-3,3])
+    ax.set_ylim([-2.9,2.9])
 
 cbar0=fig.colorbar(h1,ax=axes[0])
 cbar0.set_label('mean value')
@@ -118,7 +118,7 @@ cbar1.set_label('mean value')
 plt.tight_layout()
 plt.show()
 ```
-![example2](/examples/README_ex2.png)
+![](https://github.com/MBravoS/scicm/raw/master/examples/README_ex2.png)
 ```python
 # Colour map merging and stitching
 Edges_M2R=scicm.tools.merge(['scicm.Stone','scicm.M2R','scicm.Stone'],[0.2,0.5],'custom.Edges_M2R')
@@ -133,7 +133,7 @@ for ax,txt in zip(axes.flatten(),['custom.Edges_M2R','custom.T2B2P']):
     ax.set_xticks([])
     ax.set_yticks([])
     ax.set_xlim([-2,3])
-    ax.set_ylim([-3,3])
+    ax.set_ylim([-2.9,2.9])
 
 cbar0=fig.colorbar(h1,ax=axes[0])
 cbar0.set_label('mean value')
@@ -143,4 +143,4 @@ cbar1.set_label('mean value')
 plt.tight_layout()
 plt.show()
 ```
-![example3](/examples/README_ex3.png)
+![](https://github.com/MBravoS/scicm/raw/master/examples/README_ex3.png)
