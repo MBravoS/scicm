@@ -1,3 +1,6 @@
+0.7.1 (26/08/2021):
+-Fixing the images in PyPI
+
 0.7.0 (26/08/2021):
 -Added soft colour maps
 
