@@ -68,6 +68,11 @@ x=np.concatenate([rng.normal(0,0.5,100000),rng.normal(1,0.5,100000)])
 y=np.concatenate([rng.normal(0,0.5,60000),rng.normal(1,0.5,60000),rng.normal(-1,0.5,80000)])
 z=np.concatenate([rng.uniform(0,0.2,60000),rng.uniform(0.2,0.5,60000),rng.uniform(0.5,1,80000)])
 
+sparse_sample=rng.choice(np.arange(len(x)),300,replace=False)
+x_sparse=x[sparse_sample]
+y_sparse=y[sparse_sample]
+z_sparse=z[sparse_sample]
+
 # Plotting
 faint_white=np.array(col.to_rgba('white'))
 faint_white[-1]=0.8
@@ -77,22 +82,22 @@ fig,axes=plt.subplots(nrows=3,ncols=2,figsize=(12,12),gridspec_kw=dict(wspace=0.
 # Example of a monochromatic map, using the registered names with matplotlib
 axes[0,0].hexbin(x,y,lw=0,cmap='scicm.Teal')
 # Example of a soft map, using the colour map objects
-axes[0,1].hexbin(x,y,lw=0,cmap=scicm.cm.SoftTeal)
-# Example of a bichromatic map, reversing the colour map
-axes[1,0].hexbin(x,y,lw=0,cmap='scicm.M2R_r')
-# Example of a diverging map
-axes[1,1].hexbin(x,y,lw=0,cmap='scicm.PkO')
+axes[1,0].hexbin(x,y,lw=0,cmap=scicm.cm.SoftTeal)
 # Example of a segmented map
 axes[2,0].hexbin(x,y,lw=0,cmap='scicm.Edges')
+# Example of a bichromatic map, reversing the colour map
+axes[0,1].hexbin(x,y,lw=0,C=z,cmap='scicm.M2R_r')
+# Example of a diverging map
+axes[1,1].hexbin(x,y,lw=0,C=z,cmap='scicm.PkO')
 # Example of a miscellaneous map
-axes[2,1].hexbin(x,y,lw=0,cmap='scicm.Tropical')
+axes[2,1].scatter(x_sparse,y_sparse,s=15,c=z_sparse,cmap='scicm.Tropical')
 
-for ax,txt in zip(axes.flatten(),['Teal','SoftTeal','MkR_r','PkO','Edges','Tropical']):
+for ax,txt in zip(axes.flatten(),['Teal','MkR_r','SoftTeal','PkO','Edges','Tropical']):
     ax.text(-1.8,2.2,txt,fontsize=20,backgroundcolor=faint_white)
     ax.set_xticks([])
     ax.set_yticks([])
     ax.set_xlim([-2,3])
-    ax.set_ylim([-2.9,2.9])
+    ax.set_ylim([-2.8,2.8])
 
 plt.tight_layout()
 plt.show()
@@ -105,7 +110,8 @@ plt.show()
 # Colour map cropping
 cropped_Bkr=scicm.tools.crop('scicm.BkR',vmin=0.2,vmax=1.0)
 
-fig,axes=plt.subplots(nrows=1,ncols=2,figsize=(12,4),gridspec_kw=dict(wspace=0.0,hspace=0.0),facecolor='w')
+fig,axes=plt.subplots(nrows=1,ncols=2,figsize=(12,4),facecolor='w',
+                      gridspec_kw=dict(wspace=0.0,hspace=0.0))
 h1=axes[0].hexbin(x,y,C=z,lw=0,cmap='scicm.BkR')
 h2=axes[1].hexbin(x,y,C=z,lw=0,cmap=cropped_Bkr)
 
@@ -114,7 +120,7 @@ for ax,txt in zip(axes.flatten(),['scicm.BkR','cropped_Bkr']):
     ax.set_xticks([])
     ax.set_yticks([])
     ax.set_xlim([-2,3])
-    ax.set_ylim([-2.9,2.9])
+    ax.set_ylim([-2.8,2.8])
 
 cbar0=fig.colorbar(h1,ax=axes[0])
 cbar0.set_label('mean value')
@@ -127,19 +133,20 @@ plt.show()
 ![](https://github.com/MBravoS/scicm/raw/master/examples/README_ex2.png)
 ```python
 # Colour map merging and stitching
-Edges_M2R=scicm.tools.merge(['scicm.Stone','scicm.M2R','scicm.Stone'],[0.2,0.5],'custom.Edges_M2R')
+Edges_G=scicm.tools.merge(['scicm.Stone','scicm.Green','scicm.Stone'],[0.2,0.5],'custom.Edges_G')
 T2B2P=scicm.tools.stitch(['scicm.B2T_r','scicm.B2P'],np.array([[0,1],[0,1]]),[0.5],'custom.T2B2P')
 
-fig,axes=plt.subplots(nrows=1,ncols=2,figsize=(12,4),gridspec_kw=dict(wspace=0.0,hspace=0.0),facecolor='w')
-h1=axes[0].hexbin(x,y,C=z,cmap='custom.Edges_M2R')
+fig,axes=plt.subplots(nrows=1,ncols=2,figsize=(12,4),facecolor='w',
+                      gridspec_kw=dict(wspace=0.0,hspace=0.0))
+h1=axes[0].hexbin(x,y,C=z,cmap='custom.Edges_G')
 h2=axes[1].hexbin(x,y,C=z,cmap='custom.T2B2P')
 
-for ax,txt in zip(axes.flatten(),['custom.Edges_M2R','custom.T2B2P']):
+for ax,txt in zip(axes.flatten(),['custom.Edges_G','custom.T2B2P']):
     ax.text(-1.8,2.2,txt,fontsize=20,backgroundcolor=faint_white)
     ax.set_xticks([])
     ax.set_yticks([])
     ax.set_xlim([-2,3])
-    ax.set_ylim([-2.9,2.9])
+    ax.set_ylim([-2.8,2.8])
 
 cbar0=fig.colorbar(h1,ax=axes[0])
 cbar0.set_label('mean value')
