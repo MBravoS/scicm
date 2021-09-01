@@ -13,7 +13,7 @@ Although you may wish to install it directly from GitHub using:
 
     >pip install git+https://github.com/MBravoS/splotch.git@master
 
-Upon importing _SciCM_, the colour maps are registered with matplotlib, so they can be used by passing `cmap='scicm.cmapname'` to any plotting function that accepts a colour map (e.g. the `cmap` keyword in matplotlib). The colour map objects can also be explicitly accessed using `scicm.cm.cmapname`. Reversed versions of the colour maps are also included, accessible through the same naming convention used by matplotlib (i.e. `<cmapname>_r`).
+Upon importing _SciCM_, the colour maps are registered with matplotlib, so they can be used by passing `cmap='scicm.cmapname'` to any plotting function that accepts a colour map (e.g. the `cmap` keyword in matplotlib). The colour map objects can also be explicitly accessed using `scicm.cm.cmapname`. Reversed versions of the colour maps are also included, accessible through the same naming convention used by matplotlib (i.e. `cmapname_r`).
 
 ### Included Colour Maps
 
