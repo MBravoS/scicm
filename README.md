@@ -1,8 +1,8 @@
-# scicm: Science Colour Maps
+# SciCM: Scientific Colour Maps
 
 [![Github release](https://img.shields.io/github/release/MBravoS/scicm.svg?label=tag&colorB=54ebff)](https://github.com/MBravoS/scicm/releases) [![PyPI version](https://img.shields.io/pypi/v/scicm.svg?colorB=ff0080)](https://pypi.python.org/pypi/scicm)
 
-**scicm** is a small package containing several colour maps, aimed at filling gaps in the availability of good (i.e. perceptually linear) in both [matplotlib](https://matplotlib.org/stable/tutorials/colors/colormaps.html) and in other available packages (like [cmocean](https://github.com/matplotlib/cmocean) and [CMasher](https://github.com/1313e/CMasher)). All colour maps in this package have been created using [viscm](https://github.com/matplotlib/viscm). The full viscm visualisations are available in the [viscm_files/visualisation_samples](https://github.com/MBravoS/scicm/tree/master/viscm_files/visualisation_samples) folder of this repository. Also included are utilities for colour map manipulation.
+**_SciCM_** is a small package containing several colour maps, aimed at filling gaps in the availability of good (i.e. perceptually linear) in both [_matplotlib_](https://matplotlib.org/stable/tutorials/colors/colormaps.html) and in other available packages (like [_cmocean_](https://github.com/matplotlib/cmocean) and [CMasher](https://github.com/1313e/CMasher)). All colour maps in this package have been created using [_viscm_](https://github.com/matplotlib/viscm). The full _viscm_ visualisations are available in the [viscm_files/visualisation_samples](https://github.com/MBravoS/scicm/tree/master/viscm_files/visualisation_samples) folder of this repository. Also included are utilities for colour map manipulation.
 
 ### Installation and use
 The package is available for installation using pip:
@@ -13,7 +13,7 @@ Although you may wish to install it directly from GitHub using:
 
     >pip install git+https://github.com/MBravoS/splotch.git@master
 
-Upon importing scicm, the colour maps are registered with matplotlib, so they can be used by passing `cmap='scicm.cmapname'` to any plotting function that accepts a colour map (e.g. the `cmap` keyword in matplotlib). The colour map objects can also be explicitly accessed using `scicm.cm.cmapname`. Reversed versions of the colour maps are also included, accessible through the same naming convention used by matplotlib (i.e. `<cmapname>_r`).
+Upon importing _SciCM_, the colour maps are registered with matplotlib, so they can be used by passing `cmap='scicm.cmapname'` to any plotting function that accepts a colour map (e.g. the `cmap` keyword in matplotlib). The colour map objects can also be explicitly accessed using `scicm.cm.cmapname`. Reversed versions of the colour maps are also included, accessible through the same naming convention used by matplotlib (i.e. `<cmapname>_r`).
 
 ### Included Colour Maps
 
