@@ -3,7 +3,7 @@
 [![Github release](https://img.shields.io/github/release/MBravoS/scicm.svg?label=tag&colorB=54ebff)](https://github.com/MBravoS/scicm/releases) [![PyPI version](https://img.shields.io/pypi/v/scicm.svg?colorB=ff0080)](https://pypi.python.org/pypi/scicm)
 
 <p align="center">
-    <img src="https://github.com/MBravoS/scicm/raw/master/images/logo.png" width="300">
+    <img src="https://raw.githubusercontent.com/MBravoS/scicm/devel_matias/images/logo.png" width="300">
 </p>
 
 **_SciCM_** is a small Python package aimed at providing a large set of good (i.e. perceptually linear) colour maps, constructed with a consistent design philosophy. This package expands and complements the already existent selection of similar colour maps (e.g., [_matplotlib_](https://matplotlib.org/stable/tutorials/colors/colormaps.html), [_ColorCET_](https://github.com/holoviz/colorcet), [_cmocean_](https://github.com/matplotlib/cmocean) and [_CMasher_](https://github.com/1313e/CMasher)). All colour maps in this package have been created using [_viscm_](https://github.com/matplotlib/viscm). The full _viscm_ visualisations are available in the [viscm_files/visualisation_samples](https://github.com/MBravoS/scicm/tree/master/viscm_files/visualisation_samples) folder of this repository. Also included are utilities for colour map manipulation.
