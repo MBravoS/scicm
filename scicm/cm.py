@@ -7,19 +7,20 @@ from matplotlib import cm
 from matplotlib.colors import LinearSegmentedColormap as LSC
 
 # List of all colour maps in scicm
-cmaps=['B2P','B2T','BkG','BkR','Blue','BwG','BwR','Cyan',
-       'Day','Edges','G2Y','Garnet','GkP','Green','GwP',
-       'M2R','Magenta','Night','O2Y','Orange','P2M','PkO',
-       'Purple','Quartile','R2O','Red','Ripe','SoftBlue',
-       'SoftGreen','SoftMagenta','SoftOrange','SoftPurple',
-       'SoftRed','SoftTeal','SoftYellow','Stone','T2G',
-       'Teal','TkO','Tropical','Yellow','YkB','YkM']
+cmaps=['B2P','B2T','BkG','BkO','BkR','BkT','Blue','BwG','BwR','Cyan','Day','Edges','G2Y','Garnet',
+       'GkM','GkP','Green','GwP','M2R','Magenta','Night','O2Y','OkM','Orange','P2M','PkM','PkO',
+       'PkR','PkY','Purple','Quartile','R2O','Red','Ripe','SoftBlue','SoftGreen','SoftMagenta',
+       'SoftOrange','SoftPurple','SoftRed','SoftTeal','SoftYellow','Stone','T2G','Teal','TkG','TkO',
+       'TkP','TkR','TkY','Tropical','Yellow','YkB','YkM']
 
 # List of diverging colour maps, this separate list is used
 # to generate the mirror name copies (i.e. RwB)
 
-diverging={'BkG':'GkB','BkR':'RkB','BwG':'GwB','BwR':'RwB','GkP':'PkG',
-           'GwP':'PwG','PkO':'OkP','TkO':'OkT','YkM':'MkY','YkB':'BkY'}
+diverging={'BkG':'GkB','BkO':'OkB','BkR':'RkB','BkT':'TkB','BwG':'GwB','BwR':'RwB','GkM':'MkG',
+           'GkP':'PkG','GwP':'PwG','OkM':'MkO','PkM':'MkP','PkO':'OkP','PkP':'RkP','PkY':'YkP',
+           'TkG':'GkT','TkO':'OkT','TkP':'PkT','TkR':'RkT','TkY':'YkT','YkM':'MkY','YkB':'BkY'}
+
+# bko, bkt, gkm, okm, pkm, pkr, pky, tkg, tkp,tkr,tky
 
 # Reading in the colour map data and setting up the cm objects
 cmap_dict={}
