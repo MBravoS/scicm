@@ -1,0 +1,46 @@
+{
+    "content-type": "application/vnd.matplotlib.colormap-v1+json",
+    "name": "PwM",
+    "license": "http://creativecommons.org/publicdomain/zero/1.0/",
+    "usage-hints": [
+        "red-green-colorblind-safe",
+        "greyscale-safe",
+        "diverging"
+    ],
+    "colorspace": "sRGB",
+    "domain": "continuous",
+    "colors": "1f043b21053d230640250742270844290a472b0b492c0c4c2e0d4e300f5132105334115636125838135b3a145d3c15603d16623f176541186743196a451a6d471b6f491c724a1d754c1e784d1f7a4f217d50237f512581522783522984532b86542e8755308855328956348a57378a58398b593b8b5a3d8c5b3f8c5c418d5d438d5e458e5f478e60498f614b8f634d90644f906550916652916754926956926a58936b59936d5b946e5d946f5e95716096726296736497756597766798786999796a997b6c9a7c6e9b7d6f9b7f719c80739d82749e83769e85789f867aa0887ba1897da18b7fa28c80a38e82a48f84a59185a69287a69489a7968ba8978ca9998eaa9a90ab9c92ac9d93ad9f95aea197afa299b0a49ab1a59cb2a79eb3a9a0b4aaa1b5aca3b6aea5b7afa7b8b1a9b9b3abbab4acbbb6aebcb8b0beb9b2bfbbb4c0bdb6c1beb7c2c0b9c3c2bbc5c4bdc6c5bfc7c7c1c8c9c3cacbc5cbccc7cccec9ced0cbcfd2cdd0d4cfd2d6d1d3d7d3d5d9d5d6dbd7d8ddd9d9dfdbdbe1dddcdfdbdaded9d8dcd6d6dbd4d4dad2d2d8d0d0d7ceced6ccccd4c9cad3c7c8d2c5c6d1c3c4cfc1c2cebfc0cdbdbeccbbbdcbb9bbcab6b9c8b4b7c7b2b5c6b0b3c5aeb1c4acafc3aaadc2a8acc1a6aac0a4a8bfa2a6bea0a4bd9ea2bb9ca1ba9a9fb9989db8969bb79499b69298b59096b48e94b38c92b28a91b1888fb0868daf848bae8289ad8088ac7e86ab7c84aa7a82a97881a8767fa7747da6737ca5717aa46f78a36d76a26b75a16973a067719f65709e636e9d616c9c5f6b9b5d699a5b6799596698586497566296546195525f94505d934e5c924c5a914a598f48578e46558d44548c42528b40518a3e4f893c4e883a4c86384b853649843448833246813045802e447f2c427e2a417c28407b253f79233e78213d76203d741e3c721d3c701b3b6e1a3a6c193a6918396718386517376216356015345e15335b143259133157122f55122e52112d50102b4e0f2a4b0e28490d27470c26440c24420b23400a213e09203b081e39071d37061b34051a3205183004172d03152b0314290212",
+    "extensions": {
+        "https://matplotlib.org/viscm": {
+            "min_Jp": 90,
+            "max_Jp": 10,
+            "xp": [
+                8.455527304425843,
+                13.626692885147762,
+                8.455527304425843,
+                3.8753520757864663,
+                0,
+                9.63750800859087,
+                24.8555095747153,
+                25.446499926797784,
+                16.729392233580896
+            ],
+            "yp": [
+                -17.154233707134736,
+                -23.064137227959762,
+                -23.95062275608351,
+                -8.289378425897205,
+                0,
+                1.1664672074228264,
+                4.121418967835339,
+                0.2799816792990839,
+                -0.01551349674217306
+            ],
+            "fixed": 4,
+            "filter_k": 1000.0,
+            "cmtype": "diverging",
+            "uniform_colorspace": "CAM02-UCS",
+            "spline_method": "CatmulClark"
+        }
+    }
+}
