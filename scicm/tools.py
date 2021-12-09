@@ -64,6 +64,8 @@ def stitch(cmapinlist,vlims,tpoints,name_newcmap='newcmap'):
     
     if not isinstance(cmapinlist,list):
         raise TypeError('cmapinlist must be a list')
+    if not isinstance(vlims,np.ndarray):
+        vlims=np.array(vlims)
     for vcheck in vlims:
         if vcheck[0]>vcheck[1]:
             raise ValueError('The value of vmin must be lower than vmax')

@@ -1,3 +1,6 @@
+0.8.1 (09/12/2021):
+-Fixed issue with passing non-ndarray for vlims to scicm.tools.stitch
+
 0.8.0 (06/09/2021):
 -Added multiple colour maps: diverging, isoluminant, bichromatic_middlegrey, X2080.
 
