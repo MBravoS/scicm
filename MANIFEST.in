@@ -1,2 +1,5 @@
 include pyproject.toml
 recursive-include scicm *.txt
+prune images
+prune viscm_files
+prune build_scripts

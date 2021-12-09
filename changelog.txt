@@ -1,3 +1,9 @@
+0.8.3 (09/12/2021):
+-Fixing issues with included images
+
+0.8.2 (09/12/2021):
+-Check for PyPI file size issue
+
 0.8.1 (09/12/2021):
 -Fixed issue with passing non-ndarray for vlims to scicm.tools.stitch
 
