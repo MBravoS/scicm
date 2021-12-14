@@ -1,3 +1,6 @@
+0.8.4 (14/12/2021):
+-Added extra check for data type and updated documentation for all scicm.tools.
+
 0.8.3 (09/12/2021):
 -Fixing issues with included images
 

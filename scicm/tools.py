@@ -4,16 +4,17 @@ import numpy as np
 import matplotlib.cm as cm
 from matplotlib.colors import LinearSegmentedColormap as LSC
 
-def crop(cmapin,vmin=0.0,vmax=1.0,name_newcmap='newcmap'):
-    '''Crop colourmap between vmin/vmax values. Can also register the new colourmap with matplotlib.
+def crop(cmapin,vmin=0.0,vmax=1.0,name_newcmap=None):
+    '''Crop colour map between vmin/vmax values. Can also register the new colour map with matplotlib.
     
     Parameters
     ----------
     cmapin : str or object
-        A string with the name of the colourmap or the colourmap object.
+        A string with the name of the colour map or the colour map object.
     vmin/vmax : float, optional
-        If given, the normalised low/high limits to select from the source colourmap. Defaults to
-        vmin=0 and vmax=1 (i.e., returns the input colourmap).
+        If given, the normalised low/high limits to select from the source colourmap. Values must
+        be in the [0,1] range and vmin<vmax. Defaults to vmin=0 and vmax=1 (i.e., returns the
+        input colourmap).
     name_newcmap : str, optional
         If given, defines the name to register with matplotlib.
     Returns
@@ -26,34 +27,38 @@ def crop(cmapin,vmin=0.0,vmax=1.0,name_newcmap='newcmap'):
         raise ValueError('The value of vmin must be lower than vmax')
     if vmin<0.0 or vmax>1.0:
         raise ValueError('The values of vmin/vmax must be in the closed range [0,1]')
+    if not isinstance(name_newcmap,str) and name_newcmap is not None:
+        raise TypeError('name_newcmap must be a string')
     
     if isinstance(cmapin,str):
         cmapin=cm.get_cmap(cmapin)
     
     cmap_data=cmapin(np.linspace(vmin,vmax,256))
-    newcmap=LSC.from_list(name_newcmap,cmap_data,N=cmap_data.shape[0])
     
-    if name_newcmap!='newcmap':
+    if name_newcmap:
+        newcmap=LSC.from_list(name_newcmap,cmap_data,N=cmap_data.shape[0])
         cm.register_cmap(name_newcmap,newcmap)
+    else:
+        newcmap=LSC.from_list('newcmap',cmap_data,N=cmap_data.shape[0])
     
     return newcmap
 
-def stitch(cmapinlist,vlims,tpoints,name_newcmap='newcmap'):
-    '''Stich together the selected crops from the given list of colourmaps. Can also register the
-    new colourmap with matplotlib.
+def stitch(cmapinlist,vlims,tpoints,name_newcmap=None):
+    '''Stich together the selected crops from the given list of colour maps. Can also register the
+    new colour map with matplotlib.
     
     Parameters
     ----------
     cmapinlist : list
-        Each element must be either a string with the name of each colourmap or the
-        colourmap objects.
+        Each element must be either a string with the name of each colour map or the
+        colour map objects.
     vlims : numpy.ndarray
-        A (N,2) array that contains the vmin and vmax values used for cropping the colourmaps
-        and setting the ranges that each crop will take on the new colourmap. vlims[:,0] are
+        A (N,2) array that contains the vmin and vmax values used for cropping the colour maps
+        and setting the ranges that each crop will take on the new colour map. vlims[:,0] are
         the low limits (vmin) and vlims[:,1] the high limits (vmax).
     tpoints : list, tuple or numpy.ndarray
-        Contains the transition points where the new colourmap will transition from one input
-        colourmap to the next.
+        Contains the transition points where the new colour map will transition from one input
+        colour map to the next.
     name_newcmap : str, optional
         If given, defines the name to register with matplotlib.
     Returns
@@ -77,6 +82,8 @@ def stitch(cmapinlist,vlims,tpoints,name_newcmap='newcmap'):
         raise ValueError('tpoints must be monotonically increasing in value')
     if np.sum((tpoints<=0.0)|(tpoints>=1.0)):
         raise ValueError('The values of tpoints must be in the open range (0,1)')
+    if not isinstance(name_newcmap,str) and name_newcmap is not None:
+        raise TypeError('name_newcmap must be a string')
     
     cmapinlist=[cm.get_cmap(cmapin) if isinstance(cmapin,str) else cmapin for cmapin in cmapinlist]
     
@@ -94,25 +101,27 @@ def stitch(cmapinlist,vlims,tpoints,name_newcmap='newcmap'):
                    for i in range(len(cmapinlist))]
     cmap_data=np.concatenate(cmaplist_data,axis=0)
     
-    newcmap=LSC.from_list(name_newcmap,cmap_data,N=cmap_data.shape[0])
-    if name_newcmap!='newcmap':
+    if name_newcmap:
+        newcmap=LSC.from_list(name_newcmap,cmap_data,N=cmap_data.shape[0])
         cm.register_cmap(name_newcmap,newcmap)
+    else:
+        newcmap=LSC.from_list('newcmap',cmap_data,N=cmap_data.shape[0])
     
     return newcmap
 
-def merge(cmapinlist,tpoints,name_newcmap='newcmap'):
-    '''Merge together the selected crops from the given list of colourmaps. Can also register the
-    new colourmap with matplotlib. This is a light wrapper around scicm.tools.stitch, which uses
+def merge(cmapinlist,tpoints,name_newcmap=None):
+    '''Merge together the selected crops from the given list of colour maps. Can also register the
+    new colour map with matplotlib. This is a light wrapper around scicm.tools.stitch, which uses
     the transition points as the vmin/vmax values to crop each input colour map.
     
     Parameters
     ----------
     cmapinlist : list
-        Each element must be either a string with the name of each colourmap or the
-        colourmap objects.
+        Each element must be either a string with the name of each colour map or the
+        colour map objects.
     tpoints : list, tuple or numpy.ndarray
-        Contains the transition points where the new colourmap will transition from one input
-        colourmap to the next.
+        Contains the transition points where the new colour map will transition from one input
+        colour map to the next.
     name_newcmap : str, optional
         If given, defines the name to register with matplotlib.
     Returns
@@ -129,6 +138,8 @@ def merge(cmapinlist,tpoints,name_newcmap='newcmap'):
         raise ValueError('tpoints must be monotonically increasing in value')
     if np.sum((tpoints<=0.0)|(tpoints>=1.0)):
         raise ValueError('The values of tpoints must be in the open range (0,1)')
+    if not isinstance(name_newcmap,str) and name_newcmap is not None:
+        raise TypeError('name_newcmap must be a string')
     
     vlims=np.array([0]+list(tpoints)+[1])
     vlims=np.array([[vlims[i],vlims[i+1]] for i in range(len(cmapinlist))])
