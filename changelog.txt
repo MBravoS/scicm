@@ -1,3 +1,6 @@
+0.9.0 (11/01/2022):
+-Added all images for Wiki guide
+
 0.8.4 (14/12/2021):
 -Added extra check for data type and updated documentation for all scicm.tools.
 
