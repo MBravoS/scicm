@@ -91,7 +91,7 @@ def stitch(cmapinlist,vlims,tpoints,name_newcmap=None):
     nstep=np.empty(len(cmapinlist))
     test_range=np.linspace(0,1,256)
     for i in range(len(cmapinlist)):
-        nstep[i]=np.sum((test_range>tpoints[i])&(test_range<tpoints[i+1]))
+        nstep[i]=np.sum((test_range>tpoints[i])&(test_range<tpoints[i+1]))+1
     nstep=np.where(nstep<1,1,nstep)
     if np.sum(nstep)!=256:
         nstep[-1]+=256-np.sum(nstep)

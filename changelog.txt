@@ -1,3 +1,6 @@
+1.0.1 (10/07/2022):
+-Fixed issue with the transition point when stitching/merging colour maps
+
 1.0.0 (26/06/2022):
 -Added last planned colour map set for v1.0
 
