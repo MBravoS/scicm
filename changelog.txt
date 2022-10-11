@@ -1,3 +1,6 @@
+1.0.2 (08/10/2022):
+-Updating to new colour map handling in matplotlib 3.5
+
 1.0.1 (10/07/2022):
 -Fixed issue with the transition point when stitching/merging colour maps
 
