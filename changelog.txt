@@ -1,3 +1,6 @@
+1.0.3 (24/11/2022):
+-Made explicit the requirement for setuptools
+
 1.0.2 (08/10/2022):
 -Updating to new colour map handling in matplotlib 3.5
 
