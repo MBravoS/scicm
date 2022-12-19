@@ -31,7 +31,7 @@ A simple example of _SciCM_ in use:
     <img src="https://raw.githubusercontent.com/MBravoS/scicm/master/images/scicm_all.png" width="800">
 </p>
 
-### Documentation and use guides
+## Documentation and use guides
 _SciCM_'s GitHub Wiki contains an [extended quick start guide](https://github.com/MBravoS/scicm/wiki/Quick-Start), the [full documentation](https://github.com/MBravoS/scicm/wiki/Code-Documentation) of the package, and a [guide on how to choose the best colour map for your data](https://github.com/MBravoS/scicm/wiki/How-to-choose-which-colour-map-to-use).
 
 ## _SciCM_ in the broader colour map Python package ecosystem
