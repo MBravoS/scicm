@@ -8,7 +8,7 @@
 
 **_SciCM_** is a Python package aimed at providing a large set of colour maps designed for scientific data visualisation.
 The colour maps in _SciCM_ have been designed to be as interchangeable as possible within the same category, e.g., all diverging colour maps included in _SciCM_ do an (almost) equal job of displaying the data.
-All colour maps included in _SciCM_ remain readable for people with red-green colour blindness, the [most common type of colour blindness](www.nhs.uk/conditions/colour-vision-deficiency/).
+All colour maps included in _SciCM_ remain readable for people with red-green colour blindness (the most common type of colour blindness.
 This design frees the user in their choice of colour map to use for their data visualisation.
 _SciCM_ also includes some simple colour map manipulation tools, for users that want to further customise their colour maps.
 
@@ -53,7 +53,8 @@ Although you may wish to install it directly from GitHub using:
 
 ## How to cite the use of _SciCM_
 If you are submitting a wok that uses _SciCM_ for publication in a scientific journal, please include a mention of your use.
-Some journals include a dedicated section for this purpose (e.g., the [_Software_ in the Astrophysical Journal](https://journals.aas.org/aastexguide/#software)), but if such a section is not included on your journal or choice, please consider adding the following to your acknowledgements:
+Some journals include a dedicated section for this purpose (e.g., the [_Software_ section in the Astrophysical Journal](https://journals.aas.org/aastexguide/#software)), but if such a section is not included on your journal or choice, please consider adding the following to your acknowledgements:
 > The analysis in this work has been performed using the Python programming language, with the open-source package _SciCM_ (https://github.com/MBravoS/scicm).
+
 Feel free to expand the previous statement to include the rest of the sofware used in your work!
 Note that we aim to submit _SciCM_ for publication sometime in 2023, so how to acknowledge your use of _SciCM_ will (hopefully) soon change.
