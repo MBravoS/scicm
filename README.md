@@ -53,7 +53,8 @@ Although you may wish to install it directly from GitHub using:
 
 ## How to cite the use of _SciCM_
 If you are submitting a wok that uses _SciCM_ for publication in a scientific journal, please include a mention of your use.
-Some journals include a dedicated section for this purpose (e.g., the [_Software_ section in the Astrophysical Journal](https://journals.aas.org/aastexguide/#software)), but if such a section is not included on your journal or choice, please consider adding the following to your acknowledgements:
+Some journals include a dedicated section for this purpose (e.g., the [_Software_ section in the Astrophysical Journal](https://journals.aas.org/aastexguide/#software)), which would be the natural place to mention SciCM (please include a link to this repository).
+If such a section is not included on your journal or choice, please consider adding the following to your acknowledgements:
 > The analysis in this work has been performed using the Python programming language, with the open-source package _SciCM_ (https://github.com/MBravoS/scicm).
 
 Feel free to expand the previous statement to include the rest of the sofware used in your work!
