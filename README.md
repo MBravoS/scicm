@@ -40,7 +40,7 @@ Compared to other similar packages:
 - [_matplotlib_](https://matplotlib.org/stable/tutorials/colors/colormaps.html): It includes only 5 perceptually-uniform maps, which is less than 10% of all the colour maps it offers. The main aim of _SciCM_ is to provide perceptually-uniform alternatives to the sequential, diverging, and cyclic colour maps in _matplotlib_. 
 - [_ColorCET_](https://github.com/holoviz/colorcet): Perhaps the closest colour map package to _SciCM_ in both scope and size, the main difference is that _ColorCET_ can be characterised as a large set of variations of a small number of individual colour maps, while _SciCM_ would be a large set of variations of a small number of colour map "types".
 - [_cmocean_](https://github.com/matplotlib/cmocean): A relatively small set of perceptually uniform colour maps, with a design clearly aimed for geographic and oceanographic use. Of note is that the `oxy` colour map included in _cmocean_ was the main source of inspiration for _SciCM_'s segmented category of colour maps. 
-- [_CMasher_](https://github.com/1313e/CMasher): While there is some overlap between both packages, _CMasher_ and _SciCM_ are natural companions, as the former mainly focuses on providing perceptually-uniform alternatives to _matplotlib_'s miscellaneous colour maps, while _SciCM_ aims to do the same for other _matplotlib_'s categories.
+- [_CMasher_](https://github.com/1313e/CMasher): While there is some overlap between both packages, _CMasher_ and _SciCM_ are natural companions, as the two focus on offering alternatives to different sets of _matplotlib_'s colour map categories.
 
 ## Installation guide
 The package is available for installation using pip:
