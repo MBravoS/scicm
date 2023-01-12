@@ -1,3 +1,6 @@
+1.0.4 (12/01/2023):
+-Linted the the main code and the version updater using flake8 (as used in GitHub Actions).
+
 1.0.3 (24/11/2022):
 -Made explicit the requirement for setuptools
 
