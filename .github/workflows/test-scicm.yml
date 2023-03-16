@@ -17,7 +17,7 @@ jobs:
             - name: Install dependencies
               run: |
                 python -m pip install --upgrade pip
-                pip install flake8 pytest
+                pip install flake8 pytest pytest-cov
                 pip install requests matplotlib setuptools
             - name: Lint with flake8
               run: |
@@ -25,3 +25,6 @@ jobs:
                 flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
                 #exit-zero treats all errors as warnings. The GitHub editor is 127 characters wide
                 flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --extend-ignore=W293,W391 --statistics
+            - name: Test with pytest
+              run: |
+                pytest .github/workflows/test.py
