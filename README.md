@@ -1,6 +1,6 @@
 # _SciCM_: Scientific Colour Maps
 
-[![Github release](https://img.shields.io/github/release/MBravoS/scicm.svg?label=tag&colorB=54ebff)](https://github.com/MBravoS/scicm/releases) [![PyPI version](https://img.shields.io/pypi/v/scicm.svg?colorB=ff0080)](https://pypi.python.org/pypi/scicm) [![License](https://img.shields.io/github/release/MBravoS/scicm.svg)](https://github.com/MBravoS/scicm/blob/main/LICENSE) ![GitHub Actions CI](https://github.com/MBravoS/scicm/actions/workflows/test-scicm.yml/badge.svg)
+[![Github release](https://img.shields.io/github/release/MBravoS/scicm.svg?label=tag&colorB=54ebff)](https://github.com/MBravoS/scicm/releases) [![PyPI version](https://img.shields.io/pypi/v/scicm.svg?colorB=ff0080)](https://pypi.python.org/pypi/scicm) [![License](https://img.shields.io/pypi/l/scicm.svg)](https://github.com/MBravoS/scicm/blob/main/LICENSE) ![GitHub Actions CI](https://github.com/MBravoS/scicm/actions/workflows/test-scicm.yml/badge.svg)
 
 <p align="center">
     <img src="https://raw.githubusercontent.com/MBravoS/scicm/master/images/logo.png" width="300">
