@@ -1,5 +1,7 @@
-def func(x):
-    return(x+1)
+import scicm
+import pytest
 
-def test_answer():
-    assert func(3)==4
+class Test_errors:
+    def test_crop_badvminvmax(self):
+        with pytest.raises(ValueError):
+            scicm.tools.crop(scicm.cm.Stone,0.6,0.4)
