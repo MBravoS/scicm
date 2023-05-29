@@ -14,7 +14,7 @@ def crop(cmapin, vmin=0.0, vmax=1.0, name_newcmap=None):
     cmapin : str or object
         A string with the name of the colour map or the colour map object.
     vmin/vmax : float, optional
-        If given, the normalised low/high limits to select from the source colourmap. Values must
+        If given, the normalised low/high limits to select from the source colour map. Values must
         be in the [0, 1] range and vmin<vmax. Defaults to vmin = 0 and vmax = 1 (i.e., returns the
         input colourmap).
     name_newcmap : str, optional
@@ -34,6 +34,15 @@ def crop(cmapin, vmin=0.0, vmax=1.0, name_newcmap=None):
     
     if isinstance(cmapin, str):
         cmapin = cm.get_cmap(cmapin)
+    try:
+        test = cmapin(0.5)
+    except TypeError:
+        raise TypeError('cmapin does not behave like a colour map')
+    try:
+        if len(test)!=4:
+            raise TypeError('cmapin does not behave like a colour map')
+    except TypeError:
+        raise TypeError('cmapin does not behave like a colour map')
     
     cmap_data = cmapin(np.linspace(vmin, vmax, 256))
     
