@@ -1,5 +1,6 @@
 import scicm
 import pytest
+import numpy as np
 
 class Test_crop:
     # Test if scicm.tools.crop functions raise the appropiate errors
