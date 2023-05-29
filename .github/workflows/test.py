@@ -40,9 +40,13 @@ class Test_stitch:
     def test_2(self):
         with pytest.raises(ValueError):
             scicm.tools.stitch([scicm.cm.Stone,scicm.cm.Stone],np.array([[0.2,0.4]]),[0.5])
-    #def test_3(self):
-    #    with pytest.raises(TypeError):
-    #        scicm.tools.stitch(3,0.2,0.8)
+    # Test scicm.tools.stitch raises error with vlims outside of allowed values
+    def test_3(self):
+        with pytest.raises(ValueError):
+            scicm.tools.stitch([scicm.cm.Stone],np.array([[0.4,0.2],[0.2,0.4]]),[0.5])
+    def test_4(self):
+        with pytest.raises(ValueError):
+            scicm.tools.stitch([scicm.cm.Stone],np.array([[0.2,0.4],[0.2,1.4]]),[0.5])
     ## Test scicm.tools.stitch raises error if colour map name is not a string
     #def test_2(self):
     #    with pytest.raises(TypeError):
