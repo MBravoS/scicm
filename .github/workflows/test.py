@@ -70,7 +70,7 @@ class Test_stitch:
             scicm.tools.stitch([scicm.cm.Stone,'gibberish'],
                                 np.array([[0.2,0.4],[0.2,0.4]]),[0.5])
     def test_stitch_9(self):
-        with pytest.raises(ValueError):
+        with pytest.raises(TypeError):
             scicm.tools.stitch([scicm.cm.Stone,0],
                                 np.array([[0.2,0.4],[0.2,0.4]]),[0.5])
 
