@@ -102,15 +102,15 @@ def stitch(cmapinlist, vlims, tpoints, name_newcmap=None):
         raise TypeError('name_newcmap must be a string')
     
     cmapinlist = [cm.get_cmap(cmapin) if isinstance(cmapin, str) else cmapin for cmapin in cmapinlist]
-    #try:
-    #    test = cmapin(0.5)
-    #except TypeError:
-    #    raise TypeError('cmapin does not behave like a colour map')
-    #try:
-    #    if len(test)!=4:
-    #        raise TypeError('cmapin does not behave like a colour map')
-    #except TypeError:
-    #    raise TypeError('cmapin does not behave like a colour map')
+    try:
+        test = [c(0.5) for c in cmapinlist]
+    except TypeError:
+        raise TypeError('One of the elements in cmapinlist does not behave like a colour map')
+    try:
+        if np.sum([len(t)!=4 for t in test])<len(test):
+            raise TypeError('One of the elements in cmapinlist does not behave like a colour map')
+    except TypeError:
+        raise TypeError('One of the elements in cmapinlist does not behave like a colour map')
     
     tpoints = np.array([0]+list(tpoints)+[1])
     nstep = np.empty(len(cmapinlist))
