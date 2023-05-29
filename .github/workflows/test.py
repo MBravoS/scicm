@@ -17,7 +17,7 @@ class Test_errors:
         with pytest.raises(ValueError):
             scicm.tools.crop('gibberish',0.2,0.8)
     def test_error_crop_3(self):
-        with pytest.raises(ValueError):
+        with pytest.raises(TypeError):
             scicm.tools.crop(3,0.2,0.8)
     # Test scicm.tools.crop raises error if colour map name is not a string
     def test_error_crop_2(self):
