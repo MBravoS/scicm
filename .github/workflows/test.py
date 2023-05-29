@@ -59,6 +59,11 @@ class Test_stitch:
         with pytest.raises(ValueError):
             scicm.tools.stitch([scicm.cm.Stone,scicm.cm.Stone,scicm.cm.Stone],
                                 np.array([[0.2,0.4],[0.2,0.4],[0.2,0.4]]),[0.3,1.3])
+    # Test scicm.tools.stitch raises error with name_newcmap not being a string
+    def test_7(self):
+        with pytest.raises(ValueError):
+            scicm.tools.stitch([scicm.cm.Stone,scicm.cm.Stone],
+                                np.array([[0.2,0.4],[0.2,0.4]]),[0.5],name_newcmap=5)
 
 
 
