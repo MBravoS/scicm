@@ -55,6 +55,10 @@ class Test_stitch:
         with pytest.raises(ValueError):
             scicm.tools.stitch([scicm.cm.Stone,scicm.cm.Stone,scicm.cm.Stone],
                                 np.array([[0.2,0.4],[0.2,0.4],[0.2,0.4]]),[0.7,0.3])
+    def test_6(self):
+        with pytest.raises(ValueError):
+            scicm.tools.stitch([scicm.cm.Stone,scicm.cm.Stone,scicm.cm.Stone],
+                                np.array([[0.2,0.4],[0.2,0.4],[0.2,0.4]]),[0.3,1.3])
 
 
 

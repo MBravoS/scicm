@@ -94,7 +94,7 @@ def stitch(cmapinlist, vlims, tpoints, name_newcmap=None):
         raise ValueError('The values in vlims must be in the closed range [0, 1]')
     if not isinstance(tpoints, np.ndarray):
         tpoints = np.array(tpoints)
-    if np.sum(np.diff(tpoints) < 0) > 1:
+    if np.sum(np.diff(tpoints) < 0) > 0:
         raise ValueError('tpoints must be monotonically increasing in value')
     if np.sum((tpoints <= 0.0) | (tpoints >= 1.0)):
         raise ValueError('The values of tpoints must be in the open range (0, 1)')
