@@ -66,11 +66,11 @@ class Test_stitch:
                                 np.array([[0.2,0.4],[0.2,0.4]]),[0.5],name_newcmap=5)
     # Test scicm.tools.crop raises error if an undefined colour map is given
     def test_stitch_8(self):
-        with pytest.raises(TypeError):
+        with pytest.raises(ValueError):
             scicm.tools.stitch([scicm.cm.Stone,'gibberish'],
                                 np.array([[0.2,0.4],[0.2,0.4]]),[0.5])
     def test_stitch_9(self):
-        with pytest.raises(TypeError):
+        with pytest.raises(ValueError):
             scicm.tools.stitch([scicm.cm.Stone,0],
                                 np.array([[0.2,0.4],[0.2,0.4]]),[0.5])
 
