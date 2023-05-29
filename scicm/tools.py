@@ -81,8 +81,12 @@ def stitch(cmapinlist, vlims, tpoints, name_newcmap=None):
     
     if not isinstance(cmapinlist, list):
         raise TypeError('cmapinlist must be a list')
+    if len(cmapinlist)<2:
+        raise ValueError('cmapinlist must contain at least two colour maps')
     if not isinstance(vlims, np.ndarray):
         vlims = np.array(vlims)
+    if vlims.shape!=(len(cmapinlist),2):
+        raise ValueError('vlims shape does not match expectation of (N,2)')
     for vcheck in vlims:
         if vcheck[0] > vcheck[1]:
             raise ValueError('The value of vmin must be lower than vmax')
@@ -98,6 +102,15 @@ def stitch(cmapinlist, vlims, tpoints, name_newcmap=None):
         raise TypeError('name_newcmap must be a string')
     
     cmapinlist = [cm.get_cmap(cmapin) if isinstance(cmapin, str) else cmapin for cmapin in cmapinlist]
+    try:
+        test = cmapin(0.5)
+    except TypeError:
+        raise TypeError('cmapin does not behave like a colour map')
+    try:
+        if len(test)!=4:
+            raise TypeError('cmapin does not behave like a colour map')
+    except TypeError:
+        raise TypeError('cmapin does not behave like a colour map')
     
     tpoints = np.array([0]+list(tpoints)+[1])
     nstep = np.empty(len(cmapinlist))
