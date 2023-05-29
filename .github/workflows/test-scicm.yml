@@ -19,7 +19,7 @@ jobs:
                 python -m pip install --upgrade pip
                 pip install flake8 pytest pytest-cov
                 pip install requests matplotlib setuptools
-                pip install git+https://github.com/MBravoS/scicm/tree/devel
+                pip install git+https://github.com/MBravoS/scicm.git@devel
             - name: Lint with flake8
               run: |
                 #stop the build if there are Python syntax errors or undefined names
