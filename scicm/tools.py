@@ -2,7 +2,7 @@
 
 
 import numpy as np
-import matplotlib.colormaps as cm
+import matplotlib as mpl
 from matplotlib.colors import LinearSegmentedColormap as LSC
 
 
@@ -33,7 +33,7 @@ def crop(cmapin, vmin=0.0, vmax=1.0, name_newcmap=None):
         raise TypeError('name_newcmap must be a string')
     
     if isinstance(cmapin, str):
-        cmapin = cm[cmapin]
+        cmapin = mpl.colormaps[cmapin]
     try:
         test = cmapin(0.5)
     except TypeError:
@@ -48,7 +48,7 @@ def crop(cmapin, vmin=0.0, vmax=1.0, name_newcmap=None):
     
     if name_newcmap:
         newcmap = LSC.from_list(name_newcmap, cmap_data, N=cmap_data.shape[0])
-        cm.register(name_newcmap, newcmap)
+        mpl.colormaps.register(name_newcmap, newcmap)
     else:
         newcmap = LSC.from_list('newcmap', cmap_data, N=cmap_data.shape[0])
     
@@ -101,7 +101,7 @@ def stitch(cmapinlist, vlims, tpoints, name_newcmap=None):
     if not isinstance(name_newcmap, str) and name_newcmap is not None:
         raise TypeError('name_newcmap must be a string')
     
-    cmapinlist = [cm[cmapin] if isinstance(cmapin, str) else cmapin for cmapin in cmapinlist]
+    cmapinlist = [mpl.colormaps[cmapin] if isinstance(cmapin, str) else cmapin for cmapin in cmapinlist]
     try:
         test = [c(0.5) for c in cmapinlist]
     except TypeError:
@@ -128,7 +128,7 @@ def stitch(cmapinlist, vlims, tpoints, name_newcmap=None):
     
     if name_newcmap:
         newcmap = LSC.from_list(name_newcmap, cmap_data, N=cmap_data.shape[0])
-        cm.register(name_newcmap, newcmap)
+        mpl.colormaps.register(name_newcmap, newcmap)
     else:
         newcmap = LSC.from_list('newcmap', cmap_data, N=cmap_data.shape[0])
     
