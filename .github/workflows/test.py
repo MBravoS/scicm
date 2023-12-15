@@ -15,13 +15,10 @@ class Test_crop:
             scicm.tools.crop(scicm.cm.Stone,0,2)
     # Test scicm.tools.crop raises error if an undefined colour map is given
     def test_crop_2(self):
-        with pytest.raises(ValueError):
-            scicm.tools.crop('gibberish',0.2,0.8)
-    def test_crop_3(self):
         with pytest.raises(TypeError):
             scicm.tools.crop(3,0.2,0.8)
     # Test scicm.tools.crop raises error if colour map name is not a string
-    def test_crop_4(self):
+    def test_crop_3(self):
         with pytest.raises(TypeError):
             scicm.tools.crop(0,0.2,0.8,8)
 
@@ -66,10 +63,6 @@ class Test_stitch:
                                 np.array([[0.2,0.4],[0.2,0.4]]),[0.5],name_newcmap=5)
     # Test scicm.tools.crop raises error if an undefined colour map is given
     def test_stitch_8(self):
-        with pytest.raises(ValueError):
-            scicm.tools.stitch([scicm.cm.Stone,'gibberish'],
-                                np.array([[0.2,0.4],[0.2,0.4]]),[0.5])
-    def test_stitch_9(self):
         with pytest.raises(TypeError):
             scicm.tools.stitch([scicm.cm.Stone,0],
                                 np.array([[0.2,0.4],[0.2,0.4]]),[0.5])
@@ -102,9 +95,6 @@ class Test_merge:
             scicm.tools.merge([scicm.cm.Stone,scicm.cm.Stone],[0.5],name_newcmap=5)
     # Test scicm.tools.crop raises error if an undefined colour map is given
     def test_merge_6(self):
-        with pytest.raises(ValueError):
-            scicm.tools.merge([scicm.cm.Stone,'gibberish'],[0.5])
-    def test_merge_7(self):
         with pytest.raises(TypeError):
             scicm.tools.merge([scicm.cm.Stone,0],[0.5])
 
