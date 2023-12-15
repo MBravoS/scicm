@@ -1,2 +1,4 @@
 #Files and folders to ignore:
 examples/.ipynb_checkpoints/
+build/
+scicm.egg-info/

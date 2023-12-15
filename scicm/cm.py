@@ -1,7 +1,7 @@
 '''This module reads the colour map data from the cm folder, set ups the corresponding colour
 maps and their corresponding reverse order maps, and registers them with matplotlib'''
 
-from os import path
+from os import path, sep
 import pkg_resources
 from glob import glob
 from numpy import loadtxt
@@ -20,7 +20,8 @@ else:
 data_path = path.join(path.split(__file__)[0], 'cm_data')
 
 # List of all colour maps in scicm
-cmaps = [c.split('/')[-1].split('.')[0] for c in sorted(glob(f'{data_path}/*.txt'))]
+
+cmaps = [c.split(sep)[-1].split('.')[0] for c in sorted(glob(f'{data_path}{sep}*.txt'))]
 
 # List of diverging colour maps, this separate list is used
 # to generate the mirror name copies (i.e. RwB)

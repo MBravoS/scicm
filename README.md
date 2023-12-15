@@ -50,9 +50,9 @@ The package is available for installation using pip:
 
     >pip install scicm
 
-Although you may wish to install it directly from GitHub using:
+Although you may wish to install it directly from GitHub, the following example being for the _master_ branch:
 
-    >pip install git+https://github.com/MBravoS/splotch.git@master
+    >pip install git+https://github.com/MBravoS/scicm.git@master
 
 ## How to cite the use of _SciCM_
 If you are submitting work that uses _SciCM_ for publication in a scientific journal, please include a mention of your use.
