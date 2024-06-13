@@ -1,5 +1,6 @@
 1.0.5 (30/05/2023):
 -Fix for path issues in Windows.
+-Cleaned up imports from scicm.cm and scicm.tools
 
 1.0.4 (12/01/2023):
 -Linted the the main code and the version updater using flake8 (as used in GitHub Actions).
