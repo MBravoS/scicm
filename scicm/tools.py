@@ -5,7 +5,34 @@ import numpy as _np
 import matplotlib as _mpl
 from matplotlib.colors import LinearSegmentedColormap as _LSC
 
-### TODO: Need to figure out with merge is not producing a perfect match to the input colour maps
+
+# The following function is purely for internal checks on variables in the remaining functions.
+def _is_listlike(var):
+    """Base-level classifier for iterable objects (not strings)
+
+    Determine whether the argument is list-like by being able to iterate. Lists, tuples, numpy arrays,
+    dictionaries are considered like-like, whereas, strings, although iterable, are not considered list-like.
+
+    Parameters
+    ----------
+    var : any type
+        The var to check.
+
+    Returns
+    -------
+    is_listlike : `bool`
+        True if the array is list-like, False if not.
+    """
+
+    if isinstance(var, str):
+        return False
+
+    try:
+        _ = [i for i in var]
+        return True
+    except TypeError:  # catch when for loop fails
+        return False  # not list-like
+
 
 def crop(cmapin, vmin=0.0, vmax=1.0, name_newcmap=None):
     '''Takes a colour map and from a subset of colours generates a new map.
@@ -19,9 +46,9 @@ def crop(cmapin, vmin=0.0, vmax=1.0, name_newcmap=None):
     cmapin : str or object
         A string with the name of the colour map or the colour map object.
     vmin/vmax : float, optional
-        If given, the normalised low/high limits to select from the source colour map. Values must
-        be in the [0, 1] range and vmin<vmax. Defaults to vmin = 0 and vmax = 1 (i.e., returns the
-        input colourmap).
+        If given, the normalised low/high limits to select from the source colour map. Values need
+        to be in the [0,1] closed interval, and vmin < vmax. Defaults to vmin = 0 and vmax = 1
+        (i.e., returns the input colourmap).
     name_newcmap : str, optional
         If given, defines the name to register with matplotlib.
     
@@ -39,19 +66,19 @@ def crop(cmapin, vmin=0.0, vmax=1.0, name_newcmap=None):
     
     >>> short_viridis = crop(viridis, vmin=0.5)
     
-        Check that the first colour in the new colour map corresponds to the mid-point of viridis.
+    Check that the first colour in the new colour map corresponds to the mid-point of viridis.
     >>> viridis(128)
     (0.127568, 0.566949, 0.550556, 1.0)
     >>> short_viridis(0)
     (0.127568, 0.566949, 0.550556, 1.0)
     
-        Check that the last colour in the new colour map corresponds to the last colour of viridis.
+    Check that the last colour in the new colour map corresponds to the last colour of viridis.
     >>> viridis(255)
     (0.993248, 0.906157, 0.143936, 1.0)
     >>> short_viridis(255)
     (0.993248, 0.906157, 0.143936, 1.0)
-    
     '''
+    
     
     if vmin > vmax:
         raise ValueError('The value of vmin must be lower than vmax')
@@ -101,10 +128,11 @@ def stitch(cmapinlist, vlims, tpoints, name_newcmap=None):
     vlims : numpy.ndarray
         A (N, 2) array that contains the vmin and vmax values used for cropping the colour maps
         and setting the ranges that each crop will take on the new colour map. vlims[:, 0] are
-        the low limits (vmin) and vlims[:, 1] the high limits (vmax).
+        the low limits (vmin) and vlims[:, 1] the high limits (vmax). Values need to be in the
+        [0,1] closed interval.
     tpoints : list, tuple or numpy.ndarray
         Contains the transition points where the new colour map will transition from one input
-        colour map to the next.
+        colour map to the next. Values need to be in the (0,1) open interval.
     name_newcmap : str, optional
         If given, defines the name to register with matplotlib.
     
@@ -115,48 +143,51 @@ def stitch(cmapinlist, vlims, tpoints, name_newcmap=None):
     
     Example
     -------
-    Generate a new colour map where the first half are viridis colours and the second half are magma
-    colours:
+    Generate a new colour map where the each half is the full viridis range, with colours in each
+    half in the same order as in viridis:
     
-    >>> from matplotlib.cm import viridis, magma
+    >>> from matplotlib.cm import viridis
     >>> from scicm.tools import stitch
     
-    >>> viridis_magma = stitch([viridis,magma], tpoints=[0.5])
+    >>> double_viridis = stitch([viridis,viridis], vlims=[[0,1],[0,1]],tpoints=[0.5])
     
-        Check that the first colour in the new colour map corresponds to the first of viridis.
+    Check that the first colour in the new colour map corresponds to the first of viridis.
     >>> viridis(0)
-    (0.127568, 0.566949, 0.550556, 1.0)
-    >>> viridis_magma(0)
-    (0.127568, 0.566949, 0.550556, 1.0)
+    (0.267004, 0.004874, 0.329415, 1.0)
+    >>> double_viridis(0)
+    (0.267004, 0.004874, 0.329415, 1.0)
     
-        Check that the the new colour map switched from viridis to magma at the mid-point.
-    >>> viridis(127)
-    (0.127568, 0.566949, 0.550556, 1.0)
-    >>> viridis_magma(127)
-    (0.127568, 0.566949, 0.550556, 1.0)
-    >>> magma(128)
-    (0.127568, 0.566949, 0.550556, 1.0)
-    >>> viridis_magma(128)
-    (0.127568, 0.566949, 0.550556, 1.0)
+    Check that the the new colour map switched from the bright end to the dim end of viridis at
+    the mid-point.
+    >>> viridis(255)
+    (0.993248, 0.906157, 0.143936, 1.0)
+    >>> double_viridis(127)
+    (0.993248, 0.906157, 0.143936, 1.0)
+    >>> viridis(0)
+    (0.267004, 0.004874, 0.329415, 1.0)
+    >>> double_viridis(128)
+    (0.267004, 0.004874, 0.329415, 1.0)
     
         Check that the last colour in the new colour map corresponds to the last colour of magma.
-    >>> magma(255)
+    >>> viridis(255)
     (0.993248, 0.906157, 0.143936, 1.0)
-    >>> viridis_magma(255)
+    >>> double_viridis(255)
     (0.993248, 0.906157, 0.143936, 1.0)
-    
     '''
     
-    if not isinstance(cmapinlist, list):
-        raise TypeError('cmapinlist must be a list')
+    
+    if not _is_listlike(cmapinlist):
+        raise TypeError('cmapinlist must be iterable')
     if len(cmapinlist)<2:
         raise ValueError('cmapinlist must contain at least two colour maps')
+    if not _is_listlike(vlims):
+        raise TypeError('vlims must be iterable')
     if not isinstance(vlims, _np.ndarray):
         vlims = _np.array(vlims)
     if vlims.shape!=(len(cmapinlist),2):
         raise ValueError('vlims shape does not match expectation of (N,2)')
     for vcheck in vlims:
-        if vcheck[0] > vcheck[1]:
+        if vcheck[0] >= vcheck[1]:
             raise ValueError('The value of vmin must be lower than vmax')
     if _np.sum((vlims < 0.0) | (vlims > 1.0)) > 0:
         raise ValueError('The values in vlims must be in the closed range [0, 1]')
@@ -173,19 +204,23 @@ def stitch(cmapinlist, vlims, tpoints, name_newcmap=None):
     try:
         test = [c(0.5) for c in cmapinlist]
     except TypeError:
-        raise TypeError('One of the elements in cmapinlist does not behave like a colour map')
+        raise TypeError('One of the elements in cmapinlist does not produce an output when given a scalar as input')
     try:
         if _np.sum([len(t)==4 for t in test])<len(test):
-            raise TypeError('One of the elements in cmapinlist does not behave like a colour map')
+            raise TypeError('The output of one of the elements in cmapinlist does not have the 4 RGBA values')
     except TypeError:
-        raise TypeError('One of the elements in cmapinlist does not behave like a colour map')
+        raise TypeError('The output of one of the elements in cmapinlist is not array-like')
     
-    tpoints = _np.array([0]+list(tpoints)+[1])
+    tpoints = _np.array([0.0]+list(tpoints)+[1.1])
+    #tpoints = _np.array([0]+list(tpoints)+[1])
     nstep = _np.empty(len(cmapinlist))
     test_range = _np.linspace(0, 1, 256)
     for i in range(len(cmapinlist)):
-        nstep[i] = _np.sum((test_range > tpoints[i]) & (test_range < tpoints[i+1])) + 1
-    nstep = _np.where(nstep < 1, 1, nstep)
+        nstep[i] = _np.sum((test_range >= tpoints[i]) & (test_range < tpoints[i+1]))
+        #nstep[i] = _np.sum((test_range > tpoints[i]) & (test_range < tpoints[i+1])) + 1
+    nstep_check = nstep < 1
+    if _np.sum(nstep_check) > 0:
+        raise ValueError('The range allocated to one of the colour maps in tpoints is too small (range must be >= 1/256)')
     if _np.sum(nstep) != 256:
         nstep[-1] += 256-_np.sum(nstep)
     nstep = nstep.astype('int')
@@ -220,7 +255,7 @@ def merge(cmapinlist, tpoints, name_newcmap=None):
         colour map objects.
     tpoints : list, tuple or numpy.ndarray
         Contains the transition points where the new colour map will transition from one input
-        colour map to the next.
+        colour map to the next. Values need to be in the (0,1) open interval.
     name_newcmap : str, optional
         If given, defines the name to register with matplotlib.
     
@@ -239,34 +274,35 @@ def merge(cmapinlist, tpoints, name_newcmap=None):
     
     >>> viridis_magma = merge([viridis,magma], tpoints=[0.5])
     
-        Check that the first colour in the new colour map corresponds to the first of viridis.
+    Check that the new colour map matches both viridis and magma at each side of the transition point.
     >>> viridis(0)
-    (0.127568, 0.566949, 0.550556, 1.0)
+    (0.267004, 0.004874, 0.329415, 1.0)
     >>> viridis_magma(0)
-    (0.127568, 0.566949, 0.550556, 1.0)
+    (0.267004, 0.004874, 0.329415, 1.0)
     
-        Check that the the new colour map switched from viridis to magma at the mid-point.
-    >>> viridis(127)
-    (0.127568, 0.566949, 0.550556, 1.0)
-    >>> viridis_magma(127)
-    (0.127568, 0.566949, 0.550556, 1.0)
-    >>> magma(128)
-    (0.127568, 0.566949, 0.550556, 1.0)
-    >>> viridis_magma(128)
-    (0.127568, 0.566949, 0.550556, 1.0)
+    >>> viridis(85)
+    (0.190631, 0.407061, 0.556089, 1.0)
+    >>> viridis_magma(85)
+    (0.190631, 0.407061, 0.556089, 1.0)
     
-        Check that the last colour in the new colour map corresponds to the last colour of magma.
+    >>> magma(171)
+    (0.94718, 0.384178, 0.363701, 1.0)
+    >>> viridis_magma(171)
+    (0.94718, 0.384178, 0.363701, 1.0)
+    
     >>> magma(255)
-    (0.993248, 0.906157, 0.143936, 1.0)
+    (0.987053, 0.991438, 0.749504, 1.0)
     >>> viridis_magma(255)
-    (0.993248, 0.906157, 0.143936, 1.0)
-    
+    (0.987053, 0.991438, 0.749504, 1.0)
     '''
     
-    if not isinstance(cmapinlist, list):
-        raise TypeError('cmapinlist must be a list')
+    
+    if not _is_listlike(cmapinlist):
+        raise TypeError('cmapinlist must be iterable')
+    if not _is_listlike(tpoints):
+        raise TypeError('tpoints must be iterable')
     if not isinstance(tpoints, _np.ndarray):
-        tpoints = _np.array(tpoints)
+        tpoints=_np.array(tpoints)
     if _np.sum(_np.diff(tpoints) < 0) > 1:
         raise ValueError('tpoints must be monotonically increasing in value')
     if _np.sum((tpoints <= 0.0) | (tpoints >= 1.0)):

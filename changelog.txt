@@ -1,3 +1,7 @@
+1.0.6 (04/07/2024):
+-Improved checks and error messages for functions in scicm.tools.
+-Improved the documentation for scicm.tools in the source code.
+
 1.0.5 (30/05/2023):
 -Fix for path issues in Windows.
 -Cleaned up imports from scicm.cm and scicm.tools
